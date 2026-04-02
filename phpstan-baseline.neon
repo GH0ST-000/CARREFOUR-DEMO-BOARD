@@ -35,3 +35,57 @@ parameters:
 			identifier: argument.type
 			count: 1
 			path: app/Filament/Resources/Roles/Schemas/RoleForm.php
+
+		-
+			message: '#^Binary operation "\*" between mixed and 60 results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: app/Http/Controllers/Api/AuthController.php
+
+		-
+			message: '#^Call to an undefined method Illuminate\\Contracts\\Auth\\Guard\:\:attempt\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/Http/Controllers/Api/AuthController.php
+
+		-
+			message: '#^Call to an undefined method Illuminate\\Contracts\\Auth\\Guard\:\:factory\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/Http/Controllers/Api/AuthController.php
+
+		-
+			message: '#^Call to an undefined method Illuminate\\Contracts\\Auth\\Guard\:\:logout\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/Http/Controllers/Api/AuthController.php
+
+		-
+			message: '#^Call to an undefined method Illuminate\\Contracts\\Auth\\Guard\:\:refresh\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/Http/Controllers/Api/AuthController.php
+
+		-
+			message: '#^Cannot call method getTTL\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Http/Controllers/Api/AuthController.php
+
+		-
+			message: '#^Parameter \#1 \$token of method App\\Http\\Controllers\\Api\\AuthController\:\:respondWithToken\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: app/Http/Controllers/Api/AuthController.php
+
+		-
+			message: '#^Access to an undefined property App\\Models\\User\:\:\$roles\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/UserResource.php
+
+		-
+			message: '#^Cannot call method pluck\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Http/Resources/UserResource.php
