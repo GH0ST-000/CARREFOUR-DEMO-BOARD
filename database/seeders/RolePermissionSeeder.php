@@ -33,6 +33,7 @@ class RolePermissionSeeder extends Seeder
             'inventory',
             'recall',
             'audit',
+            'manufacturer',
         ];
 
         foreach ($resources as $resource) {
