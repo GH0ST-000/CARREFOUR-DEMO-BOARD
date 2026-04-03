@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\ManufacturerController;
 use App\Http\Controllers\Api\PermissionController;
 use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\Api\UserRoleController;
@@ -19,4 +20,6 @@ Route::middleware('auth:api')->group(function (): void {
     Route::get('roles/{role}', [RoleController::class, 'show']);
     Route::post('users/{user}/roles', [UserRoleController::class, 'store']);
     Route::delete('users/{user}/roles/{role}', [UserRoleController::class, 'destroy']);
+
+    Route::apiResource('manufacturers', ManufacturerController::class);
 });

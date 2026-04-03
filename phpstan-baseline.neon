@@ -1,6 +1,18 @@
 parameters:
 	ignoreErrors:
 		-
+			message: '#^Call to an undefined static method App\\Models\\Manufacturer\:\:create\(\)\.$#'
+			identifier: staticMethod.notFound
+			count: 1
+			path: app/Actions/Manufacturer/CreateManufacturerAction.php
+
+		-
+			message: '#^Method App\\Actions\\Manufacturer\\CreateManufacturerAction\:\:execute\(\) should return App\\Models\\Manufacturer but returns mixed\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Actions/Manufacturer/CreateManufacturerAction.php
+
+		-
 			message: '#^Call to an undefined method Illuminate\\Contracts\\Auth\\Factory\:\:id\(\)\.$#'
 			identifier: method.notFound
 			count: 1
@@ -77,6 +89,18 @@ parameters:
 			identifier: argument.type
 			count: 2
 			path: app/Http/Controllers/Api/AuthController.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 10
+			path: app/Http/Requests/Api/CreateManufacturerRequest.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 10
+			path: app/Http/Requests/Api/UpdateManufacturerRequest.php
 
 		-
 			message: '#^Access to an undefined property App\\Models\\User\:\:\$roles\.$#'
