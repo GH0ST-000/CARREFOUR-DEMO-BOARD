@@ -72,4 +72,9 @@ class User extends Authenticatable implements FilamentUser, JWTSubject
     {
         return [];
     }
+
+    protected function getDefaultGuardName(): string
+    {
+        return 'web';
+    }
 }

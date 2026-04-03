@@ -43,5 +43,8 @@ jobs:
       - name: Generate app key
         run: php artisan key:generate
 
+      - name: Install JWT SECRET
+        run: php artisan jwt:secret
+
       - name: Execute tests
         run: php artisan test

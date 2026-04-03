@@ -239,13 +239,13 @@ describe('RolePolicy', function (): void {
         expect($admin->can('viewAny', Role::class))->toBeTrue();
     });
 
-    test('quality manager can view roles', function (): void {
+    test('quality manager cannot view roles', function (): void {
         $manager = User::factory()->create();
         $manager->assignRole('Quality Manager');
 
         $role = Role::findByName('Branch Manager');
 
-        expect($manager->can('view', $role))->toBeTrue();
+        expect($manager->can('view', $role))->toBeFalse();
     });
 
     test('recall admin can create roles', function (): void {

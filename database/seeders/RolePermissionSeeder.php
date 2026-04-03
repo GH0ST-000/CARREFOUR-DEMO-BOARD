@@ -47,7 +47,6 @@ class RolePermissionSeeder extends Seeder
         $qualityManager = Role::create(['name' => 'Quality Manager']);
         $qualityManager->givePermissionTo([
             'view_any_user', 'view_user',
-            'view_any_role', 'view_role',
             'view_any_branch', 'view_branch',
             'view_any_product', 'view_product', 'create_product', 'update_product', 'delete_product',
             'view_any_inventory', 'view_inventory', 'create_inventory', 'update_inventory', 'delete_inventory',
