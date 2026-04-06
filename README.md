@@ -1,4 +1,4 @@
-# NIKORA Supply Chain Management System
+# CARREFOUR Supply Chain Management System
 
 Enterprise-grade Product Catalog and Inventory Traceability System with role-based access control, batch tracking, temperature monitoring, and compliance workflows.
 
