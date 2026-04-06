@@ -1,10 +1,14 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\BatchController;
 use App\Http\Controllers\Api\ManufacturerController;
 use App\Http\Controllers\Api\PermissionController;
+use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\Api\ReceivingController;
 use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\Api\UserRoleController;
+use App\Http\Controllers\Api\WarehouseLocationController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('auth')->group(function (): void {
@@ -22,4 +26,8 @@ Route::middleware('auth:api')->group(function (): void {
     Route::delete('users/{user}/roles/{role}', [UserRoleController::class, 'destroy']);
 
     Route::apiResource('manufacturers', ManufacturerController::class);
+    Route::apiResource('products', ProductController::class);
+    Route::apiResource('batches', BatchController::class);
+    Route::apiResource('warehouse-locations', WarehouseLocationController::class);
+    Route::apiResource('receivings', ReceivingController::class);
 });

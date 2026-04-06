@@ -1,6 +1,24 @@
 parameters:
 	ignoreErrors:
 		-
+			message: '#^Call to an undefined static method App\\Models\\Batch\:\:create\(\)\.$#'
+			identifier: staticMethod.notFound
+			count: 1
+			path: app/Actions/Batch/CreateBatchAction.php
+
+		-
+			message: '#^Method App\\Actions\\Batch\\CreateBatchAction\:\:execute\(\) should return App\\Models\\Batch but returns mixed\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Actions/Batch/CreateBatchAction.php
+
+		-
+			message: '#^Method App\\Actions\\Batch\\UpdateBatchAction\:\:execute\(\) should return App\\Models\\Batch but returns App\\Models\\Batch\|null\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Actions/Batch/UpdateBatchAction.php
+
+		-
 			message: '#^Call to an undefined static method App\\Models\\Manufacturer\:\:create\(\)\.$#'
 			identifier: staticMethod.notFound
 			count: 1
@@ -11,6 +29,54 @@ parameters:
 			identifier: return.type
 			count: 1
 			path: app/Actions/Manufacturer/CreateManufacturerAction.php
+
+		-
+			message: '#^Call to an undefined static method App\\Models\\Product\:\:create\(\)\.$#'
+			identifier: staticMethod.notFound
+			count: 1
+			path: app/Actions/Product/CreateProductAction.php
+
+		-
+			message: '#^Method App\\Actions\\Product\\CreateProductAction\:\:execute\(\) should return App\\Models\\Product but returns mixed\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Actions/Product/CreateProductAction.php
+
+		-
+			message: '#^Method App\\Actions\\Product\\UpdateProductAction\:\:execute\(\) should return App\\Models\\Product but returns App\\Models\\Product\|null\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Actions/Product/UpdateProductAction.php
+
+		-
+			message: '#^Call to an undefined static method App\\Models\\Receiving\:\:create\(\)\.$#'
+			identifier: staticMethod.notFound
+			count: 1
+			path: app/Actions/Receiving/CreateReceivingAction.php
+
+		-
+			message: '#^Method App\\Actions\\Receiving\\CreateReceivingAction\:\:execute\(\) should return App\\Models\\Receiving but returns mixed\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Actions/Receiving/CreateReceivingAction.php
+
+		-
+			message: '#^Call to an undefined static method App\\Models\\WarehouseLocation\:\:create\(\)\.$#'
+			identifier: staticMethod.notFound
+			count: 1
+			path: app/Actions/WarehouseLocation/CreateWarehouseLocationAction.php
+
+		-
+			message: '#^Method App\\Actions\\WarehouseLocation\\CreateWarehouseLocationAction\:\:execute\(\) should return App\\Models\\WarehouseLocation but returns mixed\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Actions/WarehouseLocation/CreateWarehouseLocationAction.php
+
+		-
+			message: '#^Method App\\Actions\\WarehouseLocation\\UpdateWarehouseLocationAction\:\:execute\(\) should return App\\Models\\WarehouseLocation but returns App\\Models\\WarehouseLocation\|null\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Actions/WarehouseLocation/UpdateWarehouseLocationAction.php
 
 		-
 			message: '#^Call to an undefined method Illuminate\\Contracts\\Auth\\Factory\:\:id\(\)\.$#'
@@ -91,6 +157,30 @@ parameters:
 			path: app/Http/Controllers/Api/AuthController.php
 
 		-
+			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Builder\<App\\Models\\Batch\>\:\:ordered\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/Http/Controllers/Api/BatchController.php
+
+		-
+			message: '#^Cannot call method cursorPaginate\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Http/Controllers/Api/BatchController.php
+
+		-
+			message: '#^Parameter \#1 \$data of method App\\Actions\\Batch\\CreateBatchAction\:\:execute\(\) expects array\<string, mixed\>, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Http/Controllers/Api/BatchController.php
+
+		-
+			message: '#^Parameter \#2 \$data of method App\\Actions\\Batch\\UpdateBatchAction\:\:execute\(\) expects array\<string, mixed\>, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Http/Controllers/Api/BatchController.php
+
+		-
 			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Builder\<App\\Models\\Manufacturer\>\:\:ordered\(\)\.$#'
 			identifier: method.notFound
 			count: 1
@@ -103,6 +193,78 @@ parameters:
 			path: app/Http/Controllers/Api/ManufacturerController.php
 
 		-
+			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Builder\<App\\Models\\Product\>\:\:ordered\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/Http/Controllers/Api/ProductController.php
+
+		-
+			message: '#^Cannot call method cursorPaginate\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Http/Controllers/Api/ProductController.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: app/Http/Controllers/Api/ProductController.php
+
+		-
+			message: '#^Parameter \#1 \$data of method App\\Actions\\Product\\CreateProductAction\:\:execute\(\) expects array\<string, mixed\>, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Http/Controllers/Api/ProductController.php
+
+		-
+			message: '#^Parameter \#2 \$data of method App\\Actions\\Product\\UpdateProductAction\:\:execute\(\) expects array\<string, mixed\>, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Http/Controllers/Api/ProductController.php
+
+		-
+			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Builder\<App\\Models\\Receiving\>\:\:ordered\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/Http/Controllers/Api/ReceivingController.php
+
+		-
+			message: '#^Cannot call method cursorPaginate\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Http/Controllers/Api/ReceivingController.php
+
+		-
+			message: '#^Call to an undefined method Illuminate\\Database\\Eloquent\\Builder\<App\\Models\\WarehouseLocation\>\:\:ordered\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/Http/Controllers/Api/WarehouseLocationController.php
+
+		-
+			message: '#^Cannot call method cursorPaginate\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Http/Controllers/Api/WarehouseLocationController.php
+
+		-
+			message: '#^Parameter \#1 \$data of method App\\Actions\\WarehouseLocation\\CreateWarehouseLocationAction\:\:execute\(\) expects array\<string, mixed\>, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Http/Controllers/Api/WarehouseLocationController.php
+
+		-
+			message: '#^Parameter \#2 \$data of method App\\Actions\\WarehouseLocation\\UpdateWarehouseLocationAction\:\:execute\(\) expects array\<string, mixed\>, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Http/Controllers/Api/WarehouseLocationController.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 6
+			path: app/Http/Requests/Api/CreateBatchRequest.php
+
+		-
 			message: '#^Cannot cast mixed to string\.$#'
 			identifier: cast.string
 			count: 10
@@ -111,8 +273,98 @@ parameters:
 		-
 			message: '#^Cannot cast mixed to string\.$#'
 			identifier: cast.string
+			count: 8
+			path: app/Http/Requests/Api/CreateProductRequest.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 4
+			path: app/Http/Requests/Api/CreateWarehouseLocationRequest.php
+
+		-
+			message: '#^Binary operation "\." between ''lte\:'' and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: app/Http/Requests/Api/UpdateBatchRequest.php
+
+		-
+			message: '#^Call to an undefined static method App\\Models\\Batch\:\:find\(\)\.$#'
+			identifier: staticMethod.notFound
+			count: 1
+			path: app/Http/Requests/Api/UpdateBatchRequest.php
+
+		-
+			message: '#^Cannot access property \$quantity on mixed\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: app/Http/Requests/Api/UpdateBatchRequest.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 6
+			path: app/Http/Requests/Api/UpdateBatchRequest.php
+
+		-
+			message: '#^Using nullsafe property access "\?\-\>quantity" on left side of \?\? is unnecessary\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 1
+			path: app/Http/Requests/Api/UpdateBatchRequest.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
 			count: 10
 			path: app/Http/Requests/Api/UpdateManufacturerRequest.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 8
+			path: app/Http/Requests/Api/UpdateProductRequest.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 4
+			path: app/Http/Requests/Api/UpdateWarehouseLocationRequest.php
+
+		-
+			message: '#^Cannot access property \$code on App\\Models\\WarehouseLocation\|null\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: app/Http/Resources/BatchResource.php
+
+		-
+			message: '#^Cannot access property \$id on App\\Models\\WarehouseLocation\|null\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: app/Http/Resources/BatchResource.php
+
+		-
+			message: '#^Cannot access property \$name on App\\Models\\WarehouseLocation\|null\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: app/Http/Resources/BatchResource.php
+
+		-
+			message: '#^Cannot access property \$type on App\\Models\\WarehouseLocation\|null\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: app/Http/Resources/BatchResource.php
+
+		-
+			message: '#^Using nullsafe method call on non\-nullable type Illuminate\\Support\\Carbon\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 4
+			path: app/Http/Resources/BatchResource.php
+
+		-
+			message: '#^Using nullsafe method call on non\-nullable type Illuminate\\Support\\Carbon\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 2
+			path: app/Http/Resources/ProductResource.php
 
 		-
 			message: '#^Access to an undefined property App\\Models\\User\:\:\$roles\.$#'
@@ -127,7 +379,115 @@ parameters:
 			path: app/Http/Resources/UserResource.php
 
 		-
+			message: '#^Using nullsafe method call on non\-nullable type Illuminate\\Support\\Carbon\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 2
+			path: app/Http/Resources/WarehouseLocationResource.php
+
+		-
+			message: '#^Method App\\Models\\Batch\:\:product\(\) should return Illuminate\\Database\\Eloquent\\Relations\\BelongsTo\<App\\Models\\Product, App\\Models\\Batch\> but returns Illuminate\\Database\\Eloquent\\Relations\\BelongsTo\<App\\Models\\Product, \$this\(App\\Models\\Batch\)\>\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Models/Batch.php
+
+		-
+			message: '#^Method App\\Models\\Batch\:\:receivedBy\(\) should return Illuminate\\Database\\Eloquent\\Relations\\BelongsTo\<App\\Models\\User, App\\Models\\Batch\> but returns Illuminate\\Database\\Eloquent\\Relations\\BelongsTo\<App\\Models\\User, \$this\(App\\Models\\Batch\)\>\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Models/Batch.php
+
+		-
+			message: '#^Method App\\Models\\Batch\:\:scopeActive\(\) should return Illuminate\\Database\\Eloquent\\Builder\<App\\Models\\Batch\> but returns Illuminate\\Database\\Query\\Builder\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Models/Batch.php
+
+		-
+			message: '#^Method App\\Models\\Batch\:\:scopeExpiringWithinDays\(\) should return Illuminate\\Database\\Eloquent\\Builder\<App\\Models\\Batch\> but returns Illuminate\\Database\\Query\\Builder\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Models/Batch.php
+
+		-
+			message: '#^Method App\\Models\\Batch\:\:scopeOrdered\(\) should return Illuminate\\Database\\Eloquent\\Builder\<App\\Models\\Batch\> but returns Illuminate\\Database\\Query\\Builder\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Models/Batch.php
+
+		-
+			message: '#^Method App\\Models\\Batch\:\:warehouseLocation\(\) should return Illuminate\\Database\\Eloquent\\Relations\\BelongsTo\<App\\Models\\WarehouseLocation, App\\Models\\Batch\> but returns Illuminate\\Database\\Eloquent\\Relations\\BelongsTo\<App\\Models\\WarehouseLocation, \$this\(App\\Models\\Batch\)\>\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Models/Batch.php
+
+		-
 			message: '#^Method App\\Models\\Manufacturer\:\:scopeOrdered\(\) should return Illuminate\\Database\\Eloquent\\Builder\<App\\Models\\Manufacturer\> but returns Illuminate\\Database\\Query\\Builder\.$#'
 			identifier: return.type
 			count: 1
 			path: app/Models/Manufacturer.php
+
+		-
+			message: '#^Method App\\Models\\Product\:\:manufacturer\(\) should return Illuminate\\Database\\Eloquent\\Relations\\BelongsTo\<App\\Models\\Manufacturer, App\\Models\\Product\> but returns Illuminate\\Database\\Eloquent\\Relations\\BelongsTo\<App\\Models\\Manufacturer, \$this\(App\\Models\\Product\)\>\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Models/Product.php
+
+		-
+			message: '#^Method App\\Models\\Product\:\:scopeOrdered\(\) should return Illuminate\\Database\\Eloquent\\Builder\<App\\Models\\Product\> but returns Illuminate\\Database\\Query\\Builder\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Models/Product.php
+
+		-
+			message: '#^Method App\\Models\\Receiving\:\:batch\(\) should return Illuminate\\Database\\Eloquent\\Relations\\BelongsTo\<App\\Models\\Batch, App\\Models\\Receiving\> but returns Illuminate\\Database\\Eloquent\\Relations\\BelongsTo\<App\\Models\\Batch, \$this\(App\\Models\\Receiving\)\>\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Models/Receiving.php
+
+		-
+			message: '#^Method App\\Models\\Receiving\:\:receivedBy\(\) should return Illuminate\\Database\\Eloquent\\Relations\\BelongsTo\<App\\Models\\User, App\\Models\\Receiving\> but returns Illuminate\\Database\\Eloquent\\Relations\\BelongsTo\<App\\Models\\User, \$this\(App\\Models\\Receiving\)\>\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Models/Receiving.php
+
+		-
+			message: '#^Method App\\Models\\Receiving\:\:scopeOrdered\(\) should return Illuminate\\Database\\Eloquent\\Builder\<App\\Models\\Receiving\> but returns Illuminate\\Database\\Query\\Builder\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Models/Receiving.php
+
+		-
+			message: '#^Method App\\Models\\Receiving\:\:verifiedBy\(\) should return Illuminate\\Database\\Eloquent\\Relations\\BelongsTo\<App\\Models\\User, App\\Models\\Receiving\> but returns Illuminate\\Database\\Eloquent\\Relations\\BelongsTo\<App\\Models\\User, \$this\(App\\Models\\Receiving\)\>\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Models/Receiving.php
+
+		-
+			message: '#^Method App\\Models\\Receiving\:\:warehouseLocation\(\) should return Illuminate\\Database\\Eloquent\\Relations\\BelongsTo\<App\\Models\\WarehouseLocation, App\\Models\\Receiving\> but returns Illuminate\\Database\\Eloquent\\Relations\\BelongsTo\<App\\Models\\WarehouseLocation, \$this\(App\\Models\\Receiving\)\>\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Models/Receiving.php
+
+		-
+			message: '#^Method App\\Models\\WarehouseLocation\:\:parent\(\) should return Illuminate\\Database\\Eloquent\\Relations\\BelongsTo\<App\\Models\\WarehouseLocation, App\\Models\\WarehouseLocation\> but returns Illuminate\\Database\\Eloquent\\Relations\\BelongsTo\<App\\Models\\WarehouseLocation, \$this\(App\\Models\\WarehouseLocation\)\>\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Models/WarehouseLocation.php
+
+		-
+			message: '#^Method App\\Models\\WarehouseLocation\:\:responsibleUser\(\) should return Illuminate\\Database\\Eloquent\\Relations\\BelongsTo\<App\\Models\\User, App\\Models\\WarehouseLocation\> but returns Illuminate\\Database\\Eloquent\\Relations\\BelongsTo\<App\\Models\\User, \$this\(App\\Models\\WarehouseLocation\)\>\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Models/WarehouseLocation.php
+
+		-
+			message: '#^Method App\\Models\\WarehouseLocation\:\:scopeOrdered\(\) should return Illuminate\\Database\\Eloquent\\Builder\<App\\Models\\WarehouseLocation\> but returns Illuminate\\Database\\Query\\Builder\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Models/WarehouseLocation.php
+
+		-
+			message: '#^Method App\\Models\\WarehouseLocation\:\:scopeRoots\(\) should return Illuminate\\Database\\Eloquent\\Builder\<App\\Models\\WarehouseLocation\> but returns Illuminate\\Database\\Query\\Builder\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Models/WarehouseLocation.php
