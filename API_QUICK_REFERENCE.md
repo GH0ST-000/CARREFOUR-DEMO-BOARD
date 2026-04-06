@@ -158,15 +158,36 @@ Authorization: Bearer {your_token}
 
 ---
 
-## Roles & Permissions
+## Users & Roles
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| GET | `/roles` | List all roles |
-| GET | `/roles/{id}` | View role details |
+| GET | `/roles` | List all roles with permissions |
+| GET | `/roles/{id}` | View specific role details |
 | GET | `/permissions` | List all permissions |
 | POST | `/users/{user}/roles` | Assign role to user |
 | DELETE | `/users/{user}/roles/{role}` | Remove role from user |
+
+📚 **Documentation:** [USER_MANAGEMENT.md](USER_MANAGEMENT.md)
+
+**Key Features:**
+- Role-based access control (RBAC)
+- 5 predefined roles: Recall Admin, Quality Manager, Branch Manager, Warehouse Operator, Auditor
+- Granular permissions for all resources
+- Multi-role support (users can have multiple roles)
+- Branch-level access control
+
+**Available Roles:**
+- `Recall Admin` - Full system access
+- `Quality Manager` - Quality control and oversight
+- `Branch Manager` - Branch-level management
+- `Warehouse Operator` - Inventory operations
+- `Auditor` - Read-only compliance access
+
+**User Creation:**
+- Users are created via Filament Admin Panel at `/admin`
+- Roles can be assigned during creation or via API afterward
+- See full guide in [USER_MANAGEMENT.md](USER_MANAGEMENT.md)
 
 ---
 
@@ -195,18 +216,6 @@ Authorization: Bearer {your_token}
 - `receiving_status` - Receiving records by status
 - `batch_status` - Batches by status
 - `inventory_by_location` - Inventory by warehouse location
-
----
-
-## Roles & Permissions
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/roles` | List all roles |
-| GET | `/roles/{id}` | View role details |
-| GET | `/permissions` | List all permissions |
-| POST | `/users/{user}/roles` | Assign role to user |
-| DELETE | `/users/{user}/roles/{role}` | Remove role from user |
 
 ---
 
@@ -450,6 +459,17 @@ composer test
 
 ## Resources
 
+### API Documentation
 - [Full README](README.md)
+- [API Authentication](API_AUTHENTICATION.md)
+- [User Management Guide](USER_MANAGEMENT.md)
+- [Dashboard API](DASHBOARD_API.md)
+- [Manufacturer API](MANUFACTURER_API.md)
+- [Product API](PRODUCT_API.md)
+- [Batch API](BATCH_API.md)
+- [Warehouse Location API](WAREHOUSE_LOCATION_API.md)
+- [Receiving API](RECEIVING_API.md)
+
+### Development
 - [Project Changelog](PROJECT_CHANGELOG.md)
 - [Coding Standards](.cursor/rules/laravel-boost.mdc)

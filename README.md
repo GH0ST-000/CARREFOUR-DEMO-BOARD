@@ -159,13 +159,21 @@ DELETE /api/users/{user}/roles/{id} # Remove role
 
 ## Documentation
 
-- 📚 [API Quick Reference](API_QUICK_REFERENCE.md)
+📚 **[API Quick Reference](API_QUICK_REFERENCE.md)** - Complete endpoint reference
+
+### Core API Documentation
+- 📚 [Authentication Guide](API_AUTHENTICATION.md)
+- 📚 [User Management Guide](USER_MANAGEMENT.md) - Creating users and assigning roles
+- 📚 [Dashboard API Documentation](DASHBOARD_API.md)
+
+### Resource API Documentation
 - 📚 [Receiving API Documentation](RECEIVING_API.md)
 - 📚 [Batch/Lot API Documentation](BATCH_API.md)
 - 📚 [Warehouse Location API Documentation](WAREHOUSE_LOCATION_API.md)
 - 📚 [Product API Documentation](PRODUCT_API.md)
 - 📚 [Manufacturer API Documentation](MANUFACTURER_API.md)
-- 📚 [Authentication Guide](API_AUTHENTICATION.md)
+
+### Development Documentation
 - 📚 [Project Changelog](PROJECT_CHANGELOG.md)
 - 📚 [Coding Standards](.cursor/rules/laravel-boost.mdc)
 
