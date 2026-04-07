@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Tickets\Schemas;
 
+use App\Models\Ticket;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -47,7 +48,7 @@ class TicketForm
                     ->relationship('user', 'name')
                     ->searchable()
                     ->required()
-                    ->disabled(fn (?int $record): bool => $record !== null),
+                    ->disabled(fn (?Ticket $record): bool => $record !== null),
             ]);
     }
 }
