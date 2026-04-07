@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Api;
 
 use App\Actions\Manufacturer\CreateManufacturerAction;
@@ -13,7 +15,7 @@ use App\Models\Manufacturer;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
-class ManufacturerController extends Controller
+final class ManufacturerController extends Controller
 {
     public function __construct(
         private readonly CreateManufacturerAction $createAction,

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Database\Factories\ReceivingFactory;
@@ -61,15 +63,10 @@ use Illuminate\Support\Carbon;
     'verified_by_user_id',
     'notes',
 ])]
-class Receiving extends Model
+final class Receiving extends Model
 {
     /** @use HasFactory<ReceivingFactory> */
     use HasFactory;
-
-    protected static function newFactory(): ReceivingFactory
-    {
-        return ReceivingFactory::new();
-    }
 
     /**
      * @return BelongsTo<Batch, self>
@@ -219,6 +216,11 @@ class Receiving extends Model
     public function areDocumentsComplete(): bool
     {
         return $this->documents_verified && ! $this->hasMissingDocuments();
+    }
+
+    protected static function newFactory(): ReceivingFactory
+    {
+        return ReceivingFactory::new();
     }
 
     protected function casts(): array

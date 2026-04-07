@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
@@ -9,7 +11,7 @@ use Spatie\Permission\Models\Role;
 /**
  * @property-read Role $resource
  */
-class RoleResource extends JsonResource
+final class RoleResource extends JsonResource
 {
     /**
      * @return array<string, mixed>

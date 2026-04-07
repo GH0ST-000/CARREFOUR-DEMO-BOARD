@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Actions\Ticket\ReopenTicketAction;
 use App\Models\Ticket;
 
 test('can reopen a closed ticket', function (): void {
     $ticket = Ticket::factory()->closed()->create();
 
-    $action = new ReopenTicketAction;
+    $action = app(ReopenTicketAction::class);
     $reopened = $action->execute($ticket);
 
     expect($reopened->status)->toBe('open');
@@ -18,7 +20,7 @@ test('clears closed_at when reopening', function (): void {
 
     expect($ticket->closed_at)->not->toBeNull();
 
-    $action = new ReopenTicketAction;
+    $action = app(ReopenTicketAction::class);
     $reopened = $action->execute($ticket);
 
     expect($reopened->closed_at)->toBeNull();

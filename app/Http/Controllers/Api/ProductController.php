@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Api;
 
 use App\Actions\Product\CreateProductAction;
@@ -13,7 +15,7 @@ use App\Models\Product;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
-class ProductController extends Controller
+final class ProductController extends Controller
 {
     public function index(): AnonymousResourceCollection
     {

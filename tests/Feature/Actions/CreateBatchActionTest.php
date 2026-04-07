@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Actions\Batch\CreateBatchAction;
 use App\Models\Batch;
 use App\Models\Product;
@@ -19,7 +21,7 @@ test('creates batch successfully', function (): void {
         'product_id' => $product->id,
     ];
 
-    $action = new CreateBatchAction;
+    $action = app(CreateBatchAction::class);
     $batch = $action->execute($data);
 
     expect($batch)->toBeInstanceOf(Batch::class);
@@ -40,7 +42,7 @@ test('sets remaining quantity equal to quantity', function (): void {
         'product_id' => $product->id,
     ];
 
-    $action = new CreateBatchAction;
+    $action = app(CreateBatchAction::class);
     $batch = $action->execute($data);
 
     expect($batch->remaining_quantity)->toBe(250.0);
@@ -58,7 +60,7 @@ test('persists batch to database', function (): void {
         'product_id' => $product->id,
     ];
 
-    $action = new CreateBatchAction;
+    $action = app(CreateBatchAction::class);
     $action->execute($data);
 
     $this->assertDatabaseHas('batches', [

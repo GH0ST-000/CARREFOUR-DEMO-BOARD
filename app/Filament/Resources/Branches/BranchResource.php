@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\Branches;
 
 use App\Filament\Resources\Branches\Pages\CreateBranch;
@@ -15,7 +17,7 @@ use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use UnitEnum;
 
-class BranchResource extends Resource
+final class BranchResource extends Resource
 {
     protected static ?string $model = Branch::class;
 

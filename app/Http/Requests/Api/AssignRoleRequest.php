@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Requests\Api;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AssignRoleRequest extends FormRequest
+final class AssignRoleRequest extends FormRequest
 {
     public function authorize(): bool
     {

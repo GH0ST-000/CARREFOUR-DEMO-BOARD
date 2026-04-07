@@ -13,7 +13,7 @@ use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
-class DashboardController extends Controller
+final class DashboardController extends Controller
 {
     public function __construct(
         private readonly GetDashboardStatsAction $statsAction,

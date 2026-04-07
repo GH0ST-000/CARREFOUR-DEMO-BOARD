@@ -11,7 +11,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 /**
  * @mixin Receiving
  */
-class ReceivingResource extends JsonResource
+final class ReceivingResource extends JsonResource
 {
     /**
      * @return array<string, mixed>

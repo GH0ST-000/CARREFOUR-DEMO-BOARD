@@ -6,7 +6,7 @@ namespace App\Http\Requests\Api;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateReceivingRequest extends FormRequest
+final class UpdateReceivingRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -50,7 +50,7 @@ class UpdateReceivingRequest extends FormRequest
 
         foreach (['receipt_number', 'supplier_invoice_number', 'temperature_notes', 'quality_notes', 'rejection_reason', 'notes'] as $field) {
             if (isset($data[$field]) && is_string($data[$field])) {
-                $trimmed = trim($data[$field]);
+                $trimmed = mb_trim($data[$field]);
                 $data[$field] = $trimmed === '' ? null : $trimmed;
             }
         }

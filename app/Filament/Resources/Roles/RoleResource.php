@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\Roles;
 
 use App\Filament\Resources\Roles\Pages\CreateRole;
@@ -15,7 +17,7 @@ use Filament\Tables\Table;
 use Spatie\Permission\Models\Role;
 use UnitEnum;
 
-class RoleResource extends Resource
+final class RoleResource extends Resource
 {
     protected static ?string $model = Role::class;
 

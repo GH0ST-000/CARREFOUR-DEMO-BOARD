@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\Tickets\Tables;
 
 use Filament\Actions\BulkActionGroup;
@@ -10,7 +12,7 @@ use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 
-class TicketsTable
+final class TicketsTable
 {
     public static function configure(Table $table): Table
     {

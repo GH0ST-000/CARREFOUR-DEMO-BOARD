@@ -12,7 +12,7 @@ use App\Models\Ticket;
 use App\Models\User;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
-class TicketMessageController extends Controller
+final class TicketMessageController extends Controller
 {
     public function index(Ticket $ticket): AnonymousResourceCollection
     {

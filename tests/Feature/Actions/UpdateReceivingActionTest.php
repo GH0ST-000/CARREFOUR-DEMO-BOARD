@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Actions\Receiving\UpdateReceivingAction;
 use App\Models\Receiving;
 use App\Models\User;
@@ -10,7 +12,7 @@ uses(RefreshDatabase::class);
 test('updates receiving status', function (): void {
     $receiving = Receiving::factory()->pending()->create();
 
-    $action = new UpdateReceivingAction;
+    $action = app(UpdateReceivingAction::class);
     $updated = $action->execute($receiving, [
         'status' => 'accepted',
     ]);
@@ -22,7 +24,7 @@ test('updates receiving with all fields', function (): void {
     $receiving = Receiving::factory()->pending()->create();
     $verifiedBy = User::factory()->create();
 
-    $action = new UpdateReceivingAction;
+    $action = app(UpdateReceivingAction::class);
     $updated = $action->execute($receiving, [
         'status' => 'accepted',
         'verified_by_user_id' => $verifiedBy->id,
@@ -46,7 +48,7 @@ test('updates receiving with all fields', function (): void {
 test('updates receiving to rejected with reason', function (): void {
     $receiving = Receiving::factory()->pending()->create();
 
-    $action = new UpdateReceivingAction;
+    $action = app(UpdateReceivingAction::class);
     $updated = $action->execute($receiving, [
         'status' => 'rejected',
         'rejection_reason' => 'Damaged packaging',
@@ -61,7 +63,7 @@ test('updates receiving to rejected with reason', function (): void {
 test('updates receiving to quarantined', function (): void {
     $receiving = Receiving::factory()->pending()->create();
 
-    $action = new UpdateReceivingAction;
+    $action = app(UpdateReceivingAction::class);
     $updated = $action->execute($receiving, [
         'status' => 'quarantined',
         'notes' => 'Placed in quarantine for further inspection',
@@ -74,7 +76,7 @@ test('updates receiving to quarantined', function (): void {
 test('adds photos to receiving', function (): void {
     $receiving = Receiving::factory()->create(['photos' => null]);
 
-    $action = new UpdateReceivingAction;
+    $action = app(UpdateReceivingAction::class);
     $updated = $action->execute($receiving, [
         'photos' => ['photo1.jpg', 'photo2.jpg', 'photo3.jpg'],
     ]);
@@ -88,7 +90,7 @@ test('updates temperature compliance', function (): void {
         'recorded_temperature' => 2.0,
     ]);
 
-    $action = new UpdateReceivingAction;
+    $action = app(UpdateReceivingAction::class);
     $updated = $action->execute($receiving, [
         'temperature_compliant' => false,
         'recorded_temperature' => 15.0,
@@ -105,7 +107,7 @@ test('updates document verification status', function (): void {
         'documents_verified' => false,
     ]);
 
-    $action = new UpdateReceivingAction;
+    $action = app(UpdateReceivingAction::class);
     $updated = $action->execute($receiving, [
         'documents_verified' => true,
         'missing_documents' => null,
@@ -118,7 +120,7 @@ test('updates document verification status', function (): void {
 test('updates with missing documents list', function (): void {
     $receiving = Receiving::factory()->create();
 
-    $action = new UpdateReceivingAction;
+    $action = app(UpdateReceivingAction::class);
     $updated = $action->execute($receiving, [
         'documents_verified' => false,
         'missing_documents' => ['certificate_of_origin', 'quality_certificate'],

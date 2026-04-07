@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\Tickets;
 
 use App\Filament\Resources\Tickets\Pages\EditTicket;
@@ -14,7 +16,7 @@ use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use UnitEnum;
 
-class TicketResource extends Resource
+final class TicketResource extends Resource
 {
     protected static ?string $model = Ticket::class;
 

@@ -7,7 +7,7 @@ namespace App\Policies;
 use App\Models\Receiving;
 use App\Models\User;
 
-class ReceivingPolicy
+final class ReceivingPolicy
 {
     public function viewAny(User $user): bool
     {

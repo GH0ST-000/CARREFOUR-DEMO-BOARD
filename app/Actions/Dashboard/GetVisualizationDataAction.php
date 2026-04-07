@@ -11,7 +11,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
-class GetVisualizationDataAction
+final class GetVisualizationDataAction
 {
     /**
      * @return array<string, mixed>

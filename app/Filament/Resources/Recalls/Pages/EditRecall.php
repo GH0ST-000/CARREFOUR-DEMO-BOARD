@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\Recalls\Pages;
 
 use App\Filament\Resources\Recalls\RecallResource;
 use Filament\Actions\DeleteAction;
 use Filament\Resources\Pages\EditRecord;
 
-class EditRecall extends EditRecord
+final class EditRecall extends EditRecord
 {
     protected static string $resource = RecallResource::class;
 

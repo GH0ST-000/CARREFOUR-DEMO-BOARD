@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Api;
 
 use App\Actions\Batch\CreateBatchAction;
@@ -13,7 +15,7 @@ use App\Models\Batch;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class BatchController extends Controller
+final class BatchController extends Controller
 {
     public function __construct(
         private readonly CreateBatchAction $createAction,

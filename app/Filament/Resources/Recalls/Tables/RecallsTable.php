@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\Recalls\Tables;
 
 use App\Actions\Recall\ApproveRecallAction;
@@ -14,7 +16,7 @@ use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 
-class RecallsTable
+final class RecallsTable
 {
     public static function configure(Table $table): Table
     {

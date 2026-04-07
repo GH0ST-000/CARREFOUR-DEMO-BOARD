@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Attributes\Fillable;
@@ -24,15 +26,8 @@ use Illuminate\Support\Carbon;
  * @property-read User|null $approver
  */
 #[Fillable(['product_name', 'batch_number', 'reason', 'status', 'branch_id', 'created_by', 'approved_by', 'approved_at'])]
-class Recall extends Model
+final class Recall extends Model
 {
-    protected function casts(): array
-    {
-        return [
-            'approved_at' => 'datetime',
-        ];
-    }
-
     /**
      * @return BelongsTo<Branch, $this>
      */
@@ -55,5 +50,12 @@ class Recall extends Model
     public function approver(): BelongsTo
     {
         return $this->belongsTo(User::class, 'approved_by');
+    }
+
+    protected function casts(): array
+    {
+        return [
+            'approved_at' => 'datetime',
+        ];
     }
 }

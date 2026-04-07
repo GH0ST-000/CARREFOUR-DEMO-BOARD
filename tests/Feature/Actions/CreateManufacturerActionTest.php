@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Actions\Manufacturer\CreateManufacturerAction;
 use App\Models\Manufacturer;
 
 describe('CreateManufacturerAction', function (): void {
     beforeEach(function (): void {
-        $this->action = new CreateManufacturerAction;
+        $this->action = app(CreateManufacturerAction::class);
     });
 
     test('creates manufacturer with all fields', function (): void {

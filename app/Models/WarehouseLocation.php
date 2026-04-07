@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Database\Factories\WarehouseLocationFactory;
@@ -45,7 +47,7 @@ use Illuminate\Support\Carbon;
     'has_sensor',
     'is_active',
 ])]
-class WarehouseLocation extends Model
+final class WarehouseLocation extends Model
 {
     /** @use HasFactory<WarehouseLocationFactory> */
     use HasFactory;
@@ -55,7 +57,7 @@ class WarehouseLocation extends Model
      */
     public function parent(): BelongsTo
     {
-        return $this->belongsTo(WarehouseLocation::class, 'parent_id');
+        return $this->belongsTo(self::class, 'parent_id');
     }
 
     /**
@@ -63,7 +65,7 @@ class WarehouseLocation extends Model
      */
     public function children(): HasMany
     {
-        return $this->hasMany(WarehouseLocation::class, 'parent_id');
+        return $this->hasMany(self::class, 'parent_id');
     }
 
     /**

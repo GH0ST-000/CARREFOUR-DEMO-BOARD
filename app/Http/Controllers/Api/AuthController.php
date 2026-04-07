@@ -1,17 +1,24 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\LoginRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
+use App\Services\ActionLogService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
-class AuthController extends Controller
+final class AuthController extends Controller
 {
+    public function __construct(
+        private readonly ActionLogService $actionLogService,
+    ) {}
+
     public function login(LoginRequest $request): JsonResponse
     {
         if (! $token = Auth::guard('api')->attempt($request->validated())) {
@@ -19,6 +26,10 @@ class AuthController extends Controller
                 'email' => ['The provided credentials are incorrect.'],
             ]);
         }
+
+        /** @var User $user */
+        $user = Auth::guard('api')->user();
+        $this->actionLogService->logLogin($user->id);
 
         return $this->respondWithToken($token);
     }
@@ -30,6 +41,10 @@ class AuthController extends Controller
 
     public function logout(): JsonResponse
     {
+        /** @var User $user */
+        $user = Auth::guard('api')->user();
+        $this->actionLogService->logLogout($user->id);
+
         Auth::guard('api')->logout();
 
         return response()->json(['message' => 'Successfully logged out']);

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Resources;
 
 use App\Models\WarehouseLocation;
@@ -9,7 +11,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 /**
  * @mixin WarehouseLocation
  */
-class WarehouseLocationResource extends JsonResource
+final class WarehouseLocationResource extends JsonResource
 {
     /**
      * @return array<string, mixed>

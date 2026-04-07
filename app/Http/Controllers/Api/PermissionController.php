@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
@@ -8,7 +10,7 @@ use App\Models\User;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\Auth;
 
-class PermissionController extends Controller
+final class PermissionController extends Controller
 {
     public function index(): AnonymousResourceCollection
     {

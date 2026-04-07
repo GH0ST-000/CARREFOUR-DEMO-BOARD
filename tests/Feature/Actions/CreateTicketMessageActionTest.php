@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Actions\TicketMessage\CreateTicketMessageAction;
 use App\Models\Ticket;
 use App\Models\TicketMessage;
@@ -15,7 +17,7 @@ test('can create a ticket message', function (): void {
         'body' => 'This is a support reply.',
     ];
 
-    $action = new CreateTicketMessageAction;
+    $action = app(CreateTicketMessageAction::class);
     $message = $action->execute($data);
 
     expect($message)->toBeInstanceOf(TicketMessage::class);

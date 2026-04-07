@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Policies;
 
 use App\Models\Batch;
 use App\Models\User;
 
-class BatchPolicy
+final class BatchPolicy
 {
     public function viewAny(User $user): bool
     {

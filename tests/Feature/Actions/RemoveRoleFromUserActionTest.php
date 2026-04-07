@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Actions\User\RemoveRoleFromUserAction;
 use App\Models\User;
 use Database\Seeders\RolePermissionSeeder;
@@ -8,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 describe('RemoveRoleFromUserAction', function (): void {
     beforeEach(function (): void {
         $this->seed(RolePermissionSeeder::class);
-        $this->action = new RemoveRoleFromUserAction;
+        $this->action = app(RemoveRoleFromUserAction::class);
     });
 
     test('removes role from user', function (): void {

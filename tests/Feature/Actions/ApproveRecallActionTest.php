@@ -1,11 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Actions\Recall\ApproveRecallAction;
 use App\Models\Branch;
 use App\Models\Recall;
 use App\Models\User;
 use Database\Seeders\BranchSeeder;
 use Database\Seeders\RolePermissionSeeder;
+use Illuminate\Support\Carbon;
 
 beforeEach(function (): void {
     $this->seed(RolePermissionSeeder::class);
@@ -33,7 +36,7 @@ test('approve recall action updates recall with approved status', function (): v
     expect($recall->status)->toBe('approved')
         ->and($recall->approved_by)->toBe($admin->id)
         ->and($recall->approved_at)->not->toBeNull()
-        ->and($recall->approved_at)->toBeInstanceOf(DateTime::class);
+        ->and($recall->approved_at)->toBeInstanceOf(Carbon::class);
 });
 
 test('approve recall action updates recall with rejected status', function (): void {

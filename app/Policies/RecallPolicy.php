@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Policies;
 
 use App\Models\Recall;
 use App\Models\User;
 
-class RecallPolicy
+final class RecallPolicy
 {
     public function viewAny(User $user): bool
     {

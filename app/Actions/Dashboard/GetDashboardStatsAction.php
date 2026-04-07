@@ -9,7 +9,7 @@ use App\Models\Manufacturer;
 use App\Models\Product;
 use App\Models\Receiving;
 
-class GetDashboardStatsAction
+final class GetDashboardStatsAction
 {
     /**
      * @return array<string, mixed>

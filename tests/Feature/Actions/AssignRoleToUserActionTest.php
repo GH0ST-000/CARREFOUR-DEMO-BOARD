@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Actions\User\AssignRoleToUserAction;
 use App\Models\User;
 use Database\Seeders\RolePermissionSeeder;
@@ -8,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 describe('AssignRoleToUserAction', function (): void {
     beforeEach(function (): void {
         $this->seed(RolePermissionSeeder::class);
-        $this->action = new AssignRoleToUserAction;
+        $this->action = app(AssignRoleToUserAction::class);
     });
 
     test('assigns role to user', function (): void {

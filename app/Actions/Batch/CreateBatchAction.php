@@ -1,11 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Actions\Batch;
 
 use App\Models\Batch;
+use App\Services\ActionLogService;
 
-class CreateBatchAction
+final readonly class CreateBatchAction
 {
+    public function __construct(
+        private ActionLogService $actionLogService,
+    ) {}
+
     /**
      * @param  array<string, mixed>  $data
      */
@@ -13,6 +20,10 @@ class CreateBatchAction
     {
         $data['remaining_quantity'] = $data['quantity'];
 
-        return Batch::create($data);
+        $batch = Batch::create($data);
+
+        $this->actionLogService->logModelCreated($batch);
+
+        return $batch;
     }
 }

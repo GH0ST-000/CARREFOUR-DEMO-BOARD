@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Database\Factories\UserFactory;
@@ -29,23 +31,10 @@ use Spatie\Permission\Traits\HasRoles;
  */
 #[Fillable(['name', 'email', 'password'])]
 #[Hidden(['password', 'remember_token'])]
-class User extends Authenticatable implements FilamentUser, JWTSubject
+final class User extends Authenticatable implements FilamentUser, JWTSubject
 {
     /** @use HasFactory<UserFactory> */
     use HasFactory, HasRoles, Notifiable;
-
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
-    {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
-    }
 
     public function canAccessPanel(Panel $panel): bool
     {
@@ -71,6 +60,19 @@ class User extends Authenticatable implements FilamentUser, JWTSubject
     public function getJWTCustomClaims(): array
     {
         return [];
+    }
+
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'email_verified_at' => 'datetime',
+            'password' => 'hashed',
+        ];
     }
 
     protected function getDefaultGuardName(): string

@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Policies;
 
 use App\Models\User;
 use App\Models\WarehouseLocation;
 
-class WarehouseLocationPolicy
+final class WarehouseLocationPolicy
 {
     public function viewAny(User $user): bool
     {

@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\Recalls\Pages;
 
 use App\Filament\Resources\Recalls\RecallResource;
 use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
 
-class ListRecalls extends ListRecords
+final class ListRecalls extends ListRecords
 {
     protected static string $resource = RecallResource::class;
 

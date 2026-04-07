@@ -18,7 +18,7 @@ use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
-class TicketController extends Controller
+final class TicketController extends Controller
 {
     public function index(): AnonymousResourceCollection
     {

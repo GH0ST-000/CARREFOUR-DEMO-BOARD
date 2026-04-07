@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Requests\Api;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class UpdateWarehouseLocationRequest extends FormRequest
+final class UpdateWarehouseLocationRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -41,21 +43,21 @@ class UpdateWarehouseLocationRequest extends FormRequest
         $data = [];
 
         if ($this->has('name')) {
-            $data['name'] = trim((string) $this->input('name', ''));
+            $data['name'] = mb_trim((string) $this->input('name', ''));
         }
 
         if ($this->has('code')) {
-            $data['code'] = trim((string) $this->input('code', ''));
+            $data['code'] = mb_trim((string) $this->input('code', ''));
         }
 
         if ($this->has('description')) {
             $data['description'] = $this->input('description') ?
-                trim((string) $this->input('description')) : null;
+                mb_trim((string) $this->input('description')) : null;
         }
 
         if ($this->has('address')) {
             $data['address'] = $this->input('address') ?
-                trim((string) $this->input('address')) : null;
+                mb_trim((string) $this->input('address')) : null;
         }
 
         $this->merge($data);

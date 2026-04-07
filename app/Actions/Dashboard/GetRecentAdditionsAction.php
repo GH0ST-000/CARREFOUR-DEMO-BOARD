@@ -9,7 +9,7 @@ use App\Models\Product;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 
-class GetRecentAdditionsAction
+final class GetRecentAdditionsAction
 {
     /**
      * @return array<string, mixed>

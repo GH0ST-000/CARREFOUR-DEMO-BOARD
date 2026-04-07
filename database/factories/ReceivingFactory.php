@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Factories;
 
 use App\Models\Batch;
@@ -11,7 +13,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends Factory<Receiving>
  */
-class ReceivingFactory extends Factory
+final class ReceivingFactory extends Factory
 {
     protected $model = Receiving::class;
 

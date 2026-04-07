@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Requests\Api;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateTicketRequest extends FormRequest
+final class CreateTicketRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -29,11 +31,11 @@ class CreateTicketRequest extends FormRequest
         $data = [];
 
         if ($this->has('title')) {
-            $data['title'] = trim((string) $this->input('title', ''));
+            $data['title'] = mb_trim((string) $this->input('title', ''));
         }
 
         if ($this->has('description')) {
-            $data['description'] = trim((string) $this->input('description', ''));
+            $data['description'] = mb_trim((string) $this->input('description', ''));
         }
 
         $this->merge($data);

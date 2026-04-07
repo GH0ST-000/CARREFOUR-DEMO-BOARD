@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Api;
 
 use App\Actions\WarehouseLocation\CreateWarehouseLocationAction;
@@ -13,7 +15,7 @@ use App\Models\WarehouseLocation;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class WarehouseLocationController extends Controller
+final class WarehouseLocationController extends Controller
 {
     public function __construct(
         private readonly CreateWarehouseLocationAction $createAction,

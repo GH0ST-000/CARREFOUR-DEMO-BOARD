@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Policies;
 
 use App\Models\Ticket;
 use App\Models\User;
 
-class TicketPolicy
+final class TicketPolicy
 {
     public function viewAny(User $user): bool
     {

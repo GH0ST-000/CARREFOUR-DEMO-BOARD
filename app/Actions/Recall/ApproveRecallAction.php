@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Actions\Recall;
 
 use App\Models\Recall;
 use App\Models\User;
 
-class ApproveRecallAction
+final class ApproveRecallAction
 {
     public function execute(Recall $recall, User $approver, string $status): void
     {

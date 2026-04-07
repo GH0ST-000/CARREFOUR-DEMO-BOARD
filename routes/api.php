@@ -1,5 +1,8 @@
 <?php
 
+declare(strict_types=1);
+
+use App\Http\Controllers\Api\ActionLogController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\BatchController;
 use App\Http\Controllers\Api\DashboardController;
@@ -46,4 +49,8 @@ Route::middleware('auth:api')->group(function (): void {
     Route::post('tickets/{ticket}/reopen', [TicketController::class, 'reopen']);
     Route::get('tickets/{ticket}/messages', [TicketMessageController::class, 'index']);
     Route::post('tickets/{ticket}/messages', [TicketMessageController::class, 'store']);
+
+    Route::get('action-logs', [ActionLogController::class, 'index']);
+    Route::get('action-logs/search', [ActionLogController::class, 'search']);
+    Route::get('action-logs/{actionLog}', [ActionLogController::class, 'show']);
 });

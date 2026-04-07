@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\Recalls;
 
 use App\Filament\Resources\Recalls\Pages\CreateRecall;
@@ -15,7 +17,7 @@ use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use UnitEnum;
 
-class RecallResource extends Resource
+final class RecallResource extends Resource
 {
     protected static ?string $model = Recall::class;
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Database\Factories\TicketFactory;
@@ -37,7 +39,7 @@ use Illuminate\Support\Carbon;
     'assigned_to',
     'closed_at',
 ])]
-class Ticket extends Model
+final class Ticket extends Model
 {
     /** @use HasFactory<TicketFactory> */
     use HasFactory;

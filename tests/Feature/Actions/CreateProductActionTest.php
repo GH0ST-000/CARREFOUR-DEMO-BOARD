@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Actions\Product\CreateProductAction;
 use App\Models\Manufacturer;
 use App\Models\Product;
@@ -28,7 +30,7 @@ test('can create product with all fields', function (): void {
         'is_active' => true,
     ];
 
-    $action = new CreateProductAction;
+    $action = app(CreateProductAction::class);
     $product = $action->execute($data);
 
     expect($product)->toBeInstanceOf(Product::class);
@@ -53,7 +55,7 @@ test('can create product with minimal required fields', function (): void {
         'manufacturer_id' => $manufacturer->id,
     ];
 
-    $action = new CreateProductAction;
+    $action = app(CreateProductAction::class);
     $product = $action->execute($data);
 
     expect($product)->toBeInstanceOf(Product::class);
@@ -81,7 +83,7 @@ test('creates product with correct data types', function (): void {
         'is_active' => false,
     ];
 
-    $action = new CreateProductAction;
+    $action = app(CreateProductAction::class);
     $product = $action->execute($data);
 
     expect($product->storage_temp_min)->toBeFloat();

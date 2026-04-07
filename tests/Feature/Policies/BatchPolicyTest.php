@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Models\Batch;
 use App\Models\User;
 use App\Policies\BatchPolicy;

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Database\Factories\TicketMessageFactory;
@@ -25,7 +27,7 @@ use Illuminate\Support\Carbon;
     'user_id',
     'body',
 ])]
-class TicketMessage extends Model
+final class TicketMessage extends Model
 {
     /** @use HasFactory<TicketMessageFactory> */
     use HasFactory;

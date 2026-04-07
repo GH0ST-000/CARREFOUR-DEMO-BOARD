@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Database\Factories\ProductFactory;
@@ -54,7 +56,7 @@ use Illuminate\Support\Carbon;
     'manufacturer_id',
     'is_active',
 ])]
-class Product extends Model
+final class Product extends Model
 {
     /** @use HasFactory<ProductFactory> */
     use HasFactory;

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Factories;
 
 use App\Models\Ticket;
@@ -10,7 +12,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends Factory<TicketMessage>
  */
-class TicketMessageFactory extends Factory
+final class TicketMessageFactory extends Factory
 {
     protected $model = TicketMessage::class;
 

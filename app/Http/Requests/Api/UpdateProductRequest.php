@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Requests\Api;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class UpdateProductRequest extends FormRequest
+final class UpdateProductRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -50,35 +52,35 @@ class UpdateProductRequest extends FormRequest
         $data = [];
 
         if ($this->has('name')) {
-            $data['name'] = trim((string) $this->input('name', ''));
+            $data['name'] = mb_trim((string) $this->input('name', ''));
         }
 
         if ($this->has('sku')) {
-            $data['sku'] = trim((string) $this->input('sku', ''));
+            $data['sku'] = mb_trim((string) $this->input('sku', ''));
         }
 
         if ($this->has('barcode')) {
-            $data['barcode'] = $this->input('barcode') ? trim((string) $this->input('barcode')) : null;
+            $data['barcode'] = $this->input('barcode') ? mb_trim((string) $this->input('barcode')) : null;
         }
 
         if ($this->has('qr_code')) {
-            $data['qr_code'] = $this->input('qr_code') ? trim((string) $this->input('qr_code')) : null;
+            $data['qr_code'] = $this->input('qr_code') ? mb_trim((string) $this->input('qr_code')) : null;
         }
 
         if ($this->has('brand')) {
-            $data['brand'] = $this->input('brand') ? trim((string) $this->input('brand')) : null;
+            $data['brand'] = $this->input('brand') ? mb_trim((string) $this->input('brand')) : null;
         }
 
         if ($this->has('category')) {
-            $data['category'] = trim((string) $this->input('category', ''));
+            $data['category'] = mb_trim((string) $this->input('category', ''));
         }
 
         if ($this->has('unit')) {
-            $data['unit'] = trim((string) $this->input('unit', ''));
+            $data['unit'] = mb_trim((string) $this->input('unit', ''));
         }
 
         if ($this->has('country_of_origin')) {
-            $data['country_of_origin'] = trim((string) $this->input('country_of_origin', ''));
+            $data['country_of_origin'] = mb_trim((string) $this->input('country_of_origin', ''));
         }
 
         $this->merge($data);

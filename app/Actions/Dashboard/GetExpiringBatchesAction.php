@@ -8,7 +8,7 @@ use App\Http\Resources\BatchResource;
 use App\Models\Batch;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
-class GetExpiringBatchesAction
+final class GetExpiringBatchesAction
 {
     public function execute(int $days, int $perPage): AnonymousResourceCollection
     {

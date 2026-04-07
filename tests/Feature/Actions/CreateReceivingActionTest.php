@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Actions\Receiving\CreateReceivingAction;
 use App\Models\Batch;
 use App\Models\Receiving;
@@ -25,7 +27,7 @@ test('creates receiving with valid data', function (): void {
         'status' => 'pending',
     ];
 
-    $action = new CreateReceivingAction;
+    $action = app(CreateReceivingAction::class);
     $receiving = $action->execute($data);
 
     expect($receiving)->toBeInstanceOf(Receiving::class)
@@ -62,7 +64,7 @@ test('creates receiving with all optional fields', function (): void {
         'notes' => 'Received in good condition',
     ];
 
-    $action = new CreateReceivingAction;
+    $action = app(CreateReceivingAction::class);
     $receiving = $action->execute($data);
 
     expect($receiving)->toBeInstanceOf(Receiving::class)
@@ -93,7 +95,7 @@ test('creates receiving with explicit status', function (): void {
         'status' => 'pending',
     ];
 
-    $action = new CreateReceivingAction;
+    $action = app(CreateReceivingAction::class);
     $receiving = $action->execute($data);
 
     expect($receiving->status)->toBe('pending');
@@ -117,7 +119,7 @@ test('creates rejected receiving with reason', function (): void {
         'temperature_compliant' => false,
     ];
 
-    $action = new CreateReceivingAction;
+    $action = app(CreateReceivingAction::class);
     $receiving = $action->execute($data);
 
     expect($receiving->status)->toBe('rejected')

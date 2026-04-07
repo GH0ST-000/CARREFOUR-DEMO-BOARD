@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Actions\Manufacturer\DeleteManufacturerAction;
 use App\Models\Manufacturer;
 
 describe('DeleteManufacturerAction', function (): void {
     beforeEach(function (): void {
-        $this->action = new DeleteManufacturerAction;
+        $this->action = app(DeleteManufacturerAction::class);
     });
 
     test('deletes manufacturer', function (): void {

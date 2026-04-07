@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Resources;
 
 use App\Models\Ticket;
@@ -9,7 +11,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 /**
  * @mixin Ticket
  */
-class TicketResource extends JsonResource
+final class TicketResource extends JsonResource
 {
     /**
      * @return array<string, mixed>

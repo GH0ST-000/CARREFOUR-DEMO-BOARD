@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Database\Factories\TicketAttachmentFactory;
@@ -27,7 +29,7 @@ use Illuminate\Support\Carbon;
     'file_size',
     'mime_type',
 ])]
-class TicketAttachment extends Model
+final class TicketAttachment extends Model
 {
     /** @use HasFactory<TicketAttachmentFactory> */
     use HasFactory;

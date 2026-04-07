@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Actions\Batch\UpdateBatchAction;
 use App\Models\Batch;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -17,7 +19,7 @@ test('updates batch successfully', function (): void {
         'notes' => 'Received in good condition',
     ];
 
-    $action = new UpdateBatchAction;
+    $action = app(UpdateBatchAction::class);
     $updated = $action->execute($batch, $data);
 
     expect($updated->status)->toBe('received');
@@ -33,7 +35,7 @@ test('persists changes to database', function (): void {
         'status' => 'blocked',
     ];
 
-    $action = new UpdateBatchAction;
+    $action = app(UpdateBatchAction::class);
     $action->execute($batch, $data);
 
     $this->assertDatabaseHas('batches', [
@@ -51,7 +53,7 @@ test('returns fresh instance', function (): void {
         'remaining_quantity' => 75,
     ];
 
-    $action = new UpdateBatchAction;
+    $action = app(UpdateBatchAction::class);
     $updated = $action->execute($batch, $data);
 
     expect($updated->remaining_quantity)->toBe(75.0);

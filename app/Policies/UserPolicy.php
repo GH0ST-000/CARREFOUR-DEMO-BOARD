@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Policies;
 
 use App\Models\User;
 
-class UserPolicy
+final class UserPolicy
 {
     public function viewDashboard(User $user): bool
     {

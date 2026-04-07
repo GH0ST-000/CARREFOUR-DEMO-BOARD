@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Database\Factories\BatchFactory;
@@ -58,7 +60,7 @@ use Illuminate\Support\Carbon;
     'movement_history',
     'notes',
 ])]
-class Batch extends Model
+final class Batch extends Model
 {
     /** @use HasFactory<BatchFactory> */
     use HasFactory;

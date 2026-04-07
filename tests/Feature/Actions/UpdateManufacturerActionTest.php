@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Actions\Manufacturer\UpdateManufacturerAction;
 use App\Models\Manufacturer;
 
 describe('UpdateManufacturerAction', function (): void {
     beforeEach(function (): void {
-        $this->action = new UpdateManufacturerAction;
+        $this->action = app(UpdateManufacturerAction::class);
     });
 
     test('updates manufacturer fields', function (): void {

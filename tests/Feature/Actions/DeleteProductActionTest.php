@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Actions\Product\DeleteProductAction;
 use App\Models\Manufacturer;
 use App\Models\Product;
@@ -9,7 +11,7 @@ test('can delete product', function (): void {
     $product = Product::factory()->create(['manufacturer_id' => $manufacturer->id]);
     $productId = $product->id;
 
-    $action = new DeleteProductAction;
+    $action = app(DeleteProductAction::class);
     $result = $action->execute($product);
 
     expect($result)->toBeTrue();
@@ -20,7 +22,7 @@ test('returns true when deletion succeeds', function (): void {
     $manufacturer = Manufacturer::factory()->create();
     $product = Product::factory()->create(['manufacturer_id' => $manufacturer->id]);
 
-    $action = new DeleteProductAction;
+    $action = app(DeleteProductAction::class);
     $result = $action->execute($product);
 
     expect($result)->toBeTrue();
@@ -33,7 +35,7 @@ test('removes product from database', function (): void {
         'manufacturer_id' => $manufacturer->id,
     ]);
 
-    $action = new DeleteProductAction;
+    $action = app(DeleteProductAction::class);
     $action->execute($product);
 
     $this->assertDatabaseMissing('products', [

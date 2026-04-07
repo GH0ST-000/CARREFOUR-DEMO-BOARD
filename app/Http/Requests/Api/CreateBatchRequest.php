@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Requests\Api;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateBatchRequest extends FormRequest
+final class CreateBatchRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -43,30 +45,30 @@ class CreateBatchRequest extends FormRequest
         $data = [];
 
         if ($this->has('batch_number')) {
-            $data['batch_number'] = trim((string) $this->input('batch_number', ''));
+            $data['batch_number'] = mb_trim((string) $this->input('batch_number', ''));
         }
 
         if ($this->has('import_declaration_number')) {
             $data['import_declaration_number'] = $this->input('import_declaration_number') ?
-                trim((string) $this->input('import_declaration_number')) : null;
+                mb_trim((string) $this->input('import_declaration_number')) : null;
         }
 
         if ($this->has('local_production_number')) {
             $data['local_production_number'] = $this->input('local_production_number') ?
-                trim((string) $this->input('local_production_number')) : null;
+                mb_trim((string) $this->input('local_production_number')) : null;
         }
 
         if ($this->has('unit')) {
-            $data['unit'] = trim((string) $this->input('unit', ''));
+            $data['unit'] = mb_trim((string) $this->input('unit', ''));
         }
 
         if ($this->has('packaging_condition')) {
             $data['packaging_condition'] = $this->input('packaging_condition') ?
-                trim((string) $this->input('packaging_condition')) : null;
+                mb_trim((string) $this->input('packaging_condition')) : null;
         }
 
         if ($this->has('notes')) {
-            $data['notes'] = $this->input('notes') ? trim((string) $this->input('notes')) : null;
+            $data['notes'] = $this->input('notes') ? mb_trim((string) $this->input('notes')) : null;
         }
 
         $this->merge($data);

@@ -10,6 +10,7 @@
         "bezhansalleh/filament-shield": "^4.2",
         "filament/filament": "^4.0",
         "laravel/framework": "^13.0",
+        "laravel/scout": "^11.1",
         "laravel/tinker": "^3.0",
         "php-open-source-saver/jwt-auth": "^2.9",
         "spatie/laravel-permission": "^7.2"

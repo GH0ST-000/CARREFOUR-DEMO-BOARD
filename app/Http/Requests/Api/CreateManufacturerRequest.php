@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Requests\Api;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateManufacturerRequest extends FormRequest
+final class CreateManufacturerRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -53,16 +55,16 @@ class CreateManufacturerRequest extends FormRequest
     protected function prepareForValidation(): void
     {
         $this->merge([
-            'full_name' => trim((string) $this->input('full_name', '')),
-            'short_name' => $this->input('short_name') ? trim((string) $this->input('short_name')) : null,
-            'legal_form' => trim((string) $this->input('legal_form', '')),
-            'identification_number' => trim((string) $this->input('identification_number', '')),
-            'legal_address' => trim((string) $this->input('legal_address', '')),
-            'phone' => trim((string) $this->input('phone', '')),
-            'email' => trim((string) $this->input('email', '')),
-            'country' => trim((string) $this->input('country', '')),
-            'region' => trim((string) $this->input('region', '')),
-            'city' => $this->input('city') ? trim((string) $this->input('city')) : null,
+            'full_name' => mb_trim((string) $this->input('full_name', '')),
+            'short_name' => $this->input('short_name') ? mb_trim((string) $this->input('short_name')) : null,
+            'legal_form' => mb_trim((string) $this->input('legal_form', '')),
+            'identification_number' => mb_trim((string) $this->input('identification_number', '')),
+            'legal_address' => mb_trim((string) $this->input('legal_address', '')),
+            'phone' => mb_trim((string) $this->input('phone', '')),
+            'email' => mb_trim((string) $this->input('email', '')),
+            'country' => mb_trim((string) $this->input('country', '')),
+            'region' => mb_trim((string) $this->input('region', '')),
+            'city' => $this->input('city') ? mb_trim((string) $this->input('city')) : null,
         ]);
     }
 }

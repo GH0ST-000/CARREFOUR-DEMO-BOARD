@@ -15,7 +15,7 @@ use App\Models\Receiving;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
-class ReceivingController extends Controller
+final class ReceivingController extends Controller
 {
     public function __construct(
         private readonly CreateReceivingAction $createAction,

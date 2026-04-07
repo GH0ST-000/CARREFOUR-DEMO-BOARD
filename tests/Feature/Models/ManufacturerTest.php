@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Models\Manufacturer;
 use Illuminate\Database\UniqueConstraintViolationException;
 use Illuminate\Support\Carbon;

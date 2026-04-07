@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Actions\Product\UpdateProductAction;
 use App\Models\Manufacturer;
 use App\Models\Product;
@@ -13,7 +15,7 @@ test('can update product fields', function (): void {
         'is_active' => false,
     ];
 
-    $action = new UpdateProductAction;
+    $action = app(UpdateProductAction::class);
     $updatedProduct = $action->execute($product, $data);
 
     expect($updatedProduct->name)->toBe('Updated Product Name');
@@ -29,7 +31,7 @@ test('can update single field', function (): void {
 
     $data = ['name' => 'New Name'];
 
-    $action = new UpdateProductAction;
+    $action = app(UpdateProductAction::class);
     $updatedProduct = $action->execute($product, $data);
 
     expect($updatedProduct->name)->toBe('New Name');
@@ -41,7 +43,7 @@ test('returns fresh model instance', function (): void {
 
     $data = ['name' => 'Fresh Test'];
 
-    $action = new UpdateProductAction;
+    $action = app(UpdateProductAction::class);
     $result = $action->execute($product, $data);
 
     expect($result)->toBeInstanceOf(Product::class);
@@ -62,7 +64,7 @@ test('can update temperature range', function (): void {
         'storage_temp_max' => -15.0,
     ];
 
-    $action = new UpdateProductAction;
+    $action = app(UpdateProductAction::class);
     $updatedProduct = $action->execute($product, $data);
 
     expect($updatedProduct->storage_temp_min)->toBe(-18.0);
@@ -82,7 +84,7 @@ test('can update allergens and risk indicators', function (): void {
         'risk_indicators' => ['perishable', 'fragile'],
     ];
 
-    $action = new UpdateProductAction;
+    $action = app(UpdateProductAction::class);
     $updatedProduct = $action->execute($product, $data);
 
     expect($updatedProduct->allergens)->toBe(['milk', 'eggs', 'nuts']);

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Actions\WarehouseLocation\CreateWarehouseLocationAction;
 use App\Models\WarehouseLocation;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -14,7 +16,7 @@ test('creates warehouse location successfully', function (): void {
         'is_active' => true,
     ];
 
-    $action = new CreateWarehouseLocationAction;
+    $action = app(CreateWarehouseLocationAction::class);
     $location = $action->execute($data);
 
     expect($location)->toBeInstanceOf(WarehouseLocation::class);
@@ -31,7 +33,7 @@ test('persists location to database', function (): void {
         'temp_max' => 4,
     ];
 
-    $action = new CreateWarehouseLocationAction;
+    $action = app(CreateWarehouseLocationAction::class);
     $action->execute($data);
 
     $this->assertDatabaseHas('warehouse_locations', [

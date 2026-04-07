@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Actions\Ticket\CreateTicketAction;
 use App\Models\Ticket;
 use App\Models\User;
@@ -14,7 +16,7 @@ test('can create ticket with all fields', function (): void {
         'user_id' => $user->id,
     ];
 
-    $action = new CreateTicketAction;
+    $action = app(CreateTicketAction::class);
     $ticket = $action->execute($data);
 
     expect($ticket)->toBeInstanceOf(Ticket::class);
@@ -34,7 +36,7 @@ test('can create ticket with default status', function (): void {
         'user_id' => $user->id,
     ];
 
-    $action = new CreateTicketAction;
+    $action = app(CreateTicketAction::class);
     $ticket = $action->execute($data);
 
     expect($ticket->status)->toBe('open');

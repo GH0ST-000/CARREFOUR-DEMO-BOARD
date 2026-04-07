@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Actions\WarehouseLocation\UpdateWarehouseLocationAction;
 use App\Models\WarehouseLocation;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -17,7 +19,7 @@ test('updates warehouse location successfully', function (): void {
         'is_active' => false,
     ];
 
-    $action = new UpdateWarehouseLocationAction;
+    $action = app(UpdateWarehouseLocationAction::class);
     $updated = $action->execute($location, $data);
 
     expect($updated->name)->toBe('New Name');
@@ -33,7 +35,7 @@ test('persists changes to database', function (): void {
         'name' => 'Warehouse B',
     ];
 
-    $action = new UpdateWarehouseLocationAction;
+    $action = app(UpdateWarehouseLocationAction::class);
     $action->execute($location, $data);
 
     $this->assertDatabaseHas('warehouse_locations', [

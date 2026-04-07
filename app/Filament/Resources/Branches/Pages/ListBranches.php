@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\Branches\Pages;
 
 use App\Filament\Resources\Branches\BranchResource;
 use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
 
-class ListBranches extends ListRecords
+final class ListBranches extends ListRecords
 {
     protected static string $resource = BranchResource::class;
 

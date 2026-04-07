@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Policies;
 
 use App\Models\Branch;
 use App\Models\User;
 
-class BranchPolicy
+final class BranchPolicy
 {
     public function viewAny(User $user): bool
     {

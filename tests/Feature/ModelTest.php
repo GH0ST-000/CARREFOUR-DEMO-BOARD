@@ -1,11 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Models\Branch;
 use App\Models\Recall;
 use App\Models\User;
 use Database\Seeders\BranchSeeder;
 use Database\Seeders\RolePermissionSeeder;
 use Filament\Panel;
+use Illuminate\Support\Carbon;
 
 beforeEach(function (): void {
     $this->seed(RolePermissionSeeder::class);
@@ -26,7 +29,7 @@ describe('User Model', function (): void {
             'email_verified_at' => '2024-01-01 10:00:00',
         ]);
 
-        expect($user->email_verified_at)->toBeInstanceOf(DateTime::class)
+        expect($user->email_verified_at)->toBeInstanceOf(Carbon::class)
             ->and($user->password)->toBeString();
     });
 
@@ -126,6 +129,6 @@ describe('Recall Model', function (): void {
             'approved_at' => '2024-01-01 10:00:00',
         ]);
 
-        expect($recall->approved_at)->toBeInstanceOf(DateTime::class);
+        expect($recall->approved_at)->toBeInstanceOf(Carbon::class);
     });
 });

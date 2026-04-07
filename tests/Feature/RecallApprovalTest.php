@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Actions\Recall\ApproveRecallAction;
 use App\Models\Branch;
 use App\Models\Recall;

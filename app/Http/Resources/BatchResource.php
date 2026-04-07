@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Resources;
 
 use App\Models\Batch;
@@ -9,7 +11,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 /**
  * @mixin Batch
  */
-class BatchResource extends JsonResource
+final class BatchResource extends JsonResource
 {
     /**
      * @return array<string, mixed>
