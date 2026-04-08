@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Http\Controllers\Api\ActionLogController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\BatchController;
+use App\Http\Controllers\Api\ChatController;
 use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\ManufacturerController;
 use App\Http\Controllers\Api\PermissionController;
@@ -53,4 +54,15 @@ Route::middleware('auth:api')->group(function (): void {
     Route::get('action-logs', [ActionLogController::class, 'index']);
     Route::get('action-logs/search', [ActionLogController::class, 'search']);
     Route::get('action-logs/{actionLog}', [ActionLogController::class, 'show']);
+
+    Route::prefix('chat')->group(function (): void {
+        Route::post('conversations/direct', [ChatController::class, 'createOrGetDirect']);
+        Route::get('conversations', [ChatController::class, 'indexConversations']);
+        Route::get('conversations/{conversation}', [ChatController::class, 'showConversation']);
+        Route::get('conversations/{conversation}/messages', [ChatController::class, 'indexMessages']);
+        Route::post('conversations/{conversation}/messages', [ChatController::class, 'sendMessage']);
+        Route::post('conversations/{conversation}/read', [ChatController::class, 'markAsRead']);
+        Route::get('unread-count', [ChatController::class, 'unreadCount']);
+        Route::delete('messages/{chatMessage}', [ChatController::class, 'destroyMessage']);
+    });
 });

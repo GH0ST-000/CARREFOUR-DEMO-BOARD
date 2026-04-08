@@ -13,6 +13,7 @@
         "laravel/scout": "^11.1",
         "laravel/tinker": "^3.0",
         "php-open-source-saver/jwt-auth": "^2.9",
+        "pusher/pusher-php-server": "^7.2",
         "spatie/laravel-permission": "^7.2"
     },
     "require-dev": {

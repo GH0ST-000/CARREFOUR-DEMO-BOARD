@@ -457,6 +457,30 @@ parameters:
 			path: app/Http/Controllers/Api/BatchController.php
 
 		-
+			rawMessage: 'Call to an undefined static method App\Models\User::findOrFail().'
+			identifier: staticMethod.notFound
+			count: 1
+			path: app/Http/Controllers/Api/ChatController.php
+
+		-
+			rawMessage: Cannot cast mixed to int.
+			identifier: cast.int
+			count: 3
+			path: app/Http/Controllers/Api/ChatController.php
+
+		-
+			rawMessage: 'Parameter #2 $targetUser of method App\Services\ChatService::findOrCreateDirectConversation() expects App\Models\User, mixed given.'
+			identifier: argument.type
+			count: 1
+			path: app/Http/Controllers/Api/ChatController.php
+
+		-
+			rawMessage: 'Parameter #3 $body of method App\Services\ChatService::sendMessage() expects string, mixed given.'
+			identifier: argument.type
+			count: 1
+			path: app/Http/Controllers/Api/ChatController.php
+
+		-
 			rawMessage: 'Call to an undefined method Illuminate\Database\Eloquent\Builder<App\Models\Manufacturer>::ordered().'
 			identifier: method.notFound
 			count: 1
@@ -685,6 +709,12 @@ parameters:
 			path: app/Http/Requests/Api/CreateWarehouseLocationRequest.php
 
 		-
+			rawMessage: Cannot cast mixed to string.
+			identifier: cast.string
+			count: 1
+			path: app/Http/Requests/Api/SendChatMessageRequest.php
+
+		-
 			rawMessage: Binary operation "." between 'lte:' and mixed results in an error.
 			identifier: binaryOp.invalid
 			count: 1
@@ -796,6 +826,18 @@ parameters:
 			rawMessage: Using nullsafe method call on non-nullable type Illuminate\Support\Carbon. Use -> instead.
 			identifier: nullsafe.neverNull
 			count: 2
+			path: app/Http/Resources/ChatMessageResource.php
+
+		-
+			rawMessage: Using nullsafe method call on non-nullable type Illuminate\Support\Carbon. Use -> instead.
+			identifier: nullsafe.neverNull
+			count: 2
+			path: app/Http/Resources/ConversationResource.php
+
+		-
+			rawMessage: Using nullsafe method call on non-nullable type Illuminate\Support\Carbon. Use -> instead.
+			identifier: nullsafe.neverNull
+			count: 2
 			path: app/Http/Resources/ProductResource.php
 
 		-
@@ -881,6 +923,60 @@ parameters:
 			identifier: return.type
 			count: 1
 			path: app/Models/Batch.php
+
+		-
+			rawMessage: 'Method App\Models\ChatMessage::conversation() should return Illuminate\Database\Eloquent\Relations\BelongsTo<App\Models\Conversation, App\Models\ChatMessage> but returns Illuminate\Database\Eloquent\Relations\BelongsTo<App\Models\Conversation, $this(App\Models\ChatMessage)>.'
+			identifier: return.type
+			count: 1
+			path: app/Models/ChatMessage.php
+
+		-
+			rawMessage: 'Method App\Models\ChatMessage::scopeOrdered() should return Illuminate\Database\Eloquent\Builder<App\Models\ChatMessage> but returns Illuminate\Database\Query\Builder.'
+			identifier: return.type
+			count: 1
+			path: app/Models/ChatMessage.php
+
+		-
+			rawMessage: 'Method App\Models\ChatMessage::sender() should return Illuminate\Database\Eloquent\Relations\BelongsTo<App\Models\User, App\Models\ChatMessage> but returns Illuminate\Database\Eloquent\Relations\BelongsTo<App\Models\User, $this(App\Models\ChatMessage)>.'
+			identifier: return.type
+			count: 1
+			path: app/Models/ChatMessage.php
+
+		-
+			rawMessage: 'Method App\Models\Conversation::latestMessage() should return Illuminate\Database\Eloquent\Relations\HasOne<App\Models\ChatMessage, App\Models\Conversation> but returns Illuminate\Database\Eloquent\Relations\HasOne<App\Models\ChatMessage, $this(App\Models\Conversation)>.'
+			identifier: return.type
+			count: 1
+			path: app/Models/Conversation.php
+
+		-
+			rawMessage: 'Method App\Models\Conversation::messages() should return Illuminate\Database\Eloquent\Relations\HasMany<App\Models\ChatMessage, App\Models\Conversation> but returns Illuminate\Database\Eloquent\Relations\HasMany<App\Models\ChatMessage, $this(App\Models\Conversation)>.'
+			identifier: return.type
+			count: 1
+			path: app/Models/Conversation.php
+
+		-
+			rawMessage: 'Method App\Models\Conversation::participants() should return Illuminate\Database\Eloquent\Relations\HasMany<App\Models\ConversationParticipant, App\Models\Conversation> but returns Illuminate\Database\Eloquent\Relations\HasMany<App\Models\ConversationParticipant, $this(App\Models\Conversation)>.'
+			identifier: return.type
+			count: 1
+			path: app/Models/Conversation.php
+
+		-
+			rawMessage: 'Method App\Models\Conversation::scopeOrderedByLatestMessage() should return Illuminate\Database\Eloquent\Builder<App\Models\Conversation> but returns Illuminate\Database\Query\Builder.'
+			identifier: return.type
+			count: 1
+			path: app/Models/Conversation.php
+
+		-
+			rawMessage: 'Method App\Models\ConversationParticipant::conversation() should return Illuminate\Database\Eloquent\Relations\BelongsTo<App\Models\Conversation, App\Models\ConversationParticipant> but returns Illuminate\Database\Eloquent\Relations\BelongsTo<App\Models\Conversation, $this(App\Models\ConversationParticipant)>.'
+			identifier: return.type
+			count: 1
+			path: app/Models/ConversationParticipant.php
+
+		-
+			rawMessage: 'Method App\Models\ConversationParticipant::user() should return Illuminate\Database\Eloquent\Relations\BelongsTo<App\Models\User, App\Models\ConversationParticipant> but returns Illuminate\Database\Eloquent\Relations\BelongsTo<App\Models\User, $this(App\Models\ConversationParticipant)>.'
+			identifier: return.type
+			count: 1
+			path: app/Models/ConversationParticipant.php
 
 		-
 			rawMessage: 'Method App\Models\Manufacturer::scopeOrdered() should return Illuminate\Database\Eloquent\Builder<App\Models\Manufacturer> but returns Illuminate\Database\Query\Builder.'
@@ -1037,3 +1133,189 @@ parameters:
 			identifier: encapsedStringPart.nonString
 			count: 4
 			path: app/Services/ActionLogService.php
+
+		-
+			rawMessage: Anonymous function should return App\Models\ChatMessage but returns mixed.
+			identifier: return.type
+			count: 1
+			path: app/Services/ChatService.php
+
+		-
+			rawMessage: Anonymous function should return App\Models\Conversation but returns mixed.
+			identifier: return.type
+			count: 1
+			path: app/Services/ChatService.php
+
+		-
+			rawMessage: 'Call to an undefined method Illuminate\Database\Eloquent\Builder<App\Models\ChatMessage>::ordered().'
+			identifier: method.notFound
+			count: 1
+			path: app/Services/ChatService.php
+
+		-
+			rawMessage: 'Call to an undefined method Illuminate\Database\Eloquent\Builder<App\Models\Conversation>::direct().'
+			identifier: method.notFound
+			count: 1
+			path: app/Services/ChatService.php
+
+		-
+			rawMessage: 'Call to an undefined method Illuminate\Database\Eloquent\Builder<App\Models\Conversation>::forUser().'
+			identifier: method.notFound
+			count: 1
+			path: app/Services/ChatService.php
+
+		-
+			rawMessage: 'Call to an undefined method Illuminate\Database\Eloquent\Relations\HasMany<App\Models\ChatMessage, App\Models\Conversation>::incomingFor().'
+			identifier: method.notFound
+			count: 1
+			path: app/Services/ChatService.php
+
+		-
+			rawMessage: 'Call to an undefined method Illuminate\Database\Query\Builder::incomingFor().'
+			identifier: method.notFound
+			count: 1
+			path: app/Services/ChatService.php
+
+		-
+			rawMessage: 'Call to an undefined static method App\Models\ChatMessage::create().'
+			identifier: staticMethod.notFound
+			count: 1
+			path: app/Services/ChatService.php
+
+		-
+			rawMessage: 'Call to an undefined static method App\Models\Conversation::create().'
+			identifier: staticMethod.notFound
+			count: 1
+			path: app/Services/ChatService.php
+
+		-
+			rawMessage: 'Call to an undefined static method App\Models\ConversationParticipant::create().'
+			identifier: staticMethod.notFound
+			count: 2
+			path: app/Services/ChatService.php
+
+		-
+			rawMessage: Cannot access property $created_at on mixed.
+			identifier: property.nonObject
+			count: 1
+			path: app/Services/ChatService.php
+
+		-
+			rawMessage: Cannot access property $id on mixed.
+			identifier: property.nonObject
+			count: 2
+			path: app/Services/ChatService.php
+
+		-
+			rawMessage: 'Cannot call method count() on mixed.'
+			identifier: method.nonObject
+			count: 1
+			path: app/Services/ChatService.php
+
+		-
+			rawMessage: 'Cannot call method cursorPaginate() on mixed.'
+			identifier: method.nonObject
+			count: 2
+			path: app/Services/ChatService.php
+
+		-
+			rawMessage: 'Cannot call method first() on mixed.'
+			identifier: method.nonObject
+			count: 1
+			path: app/Services/ChatService.php
+
+		-
+			rawMessage: 'Cannot call method load() on mixed.'
+			identifier: method.nonObject
+			count: 2
+			path: app/Services/ChatService.php
+
+		-
+			rawMessage: 'Cannot call method orderedByLatestMessage() on mixed.'
+			identifier: method.nonObject
+			count: 1
+			path: app/Services/ChatService.php
+
+		-
+			rawMessage: 'Cannot call method unread() on mixed.'
+			identifier: method.nonObject
+			count: 2
+			path: app/Services/ChatService.php
+
+		-
+			rawMessage: 'Cannot call method update() on mixed.'
+			identifier: method.nonObject
+			count: 1
+			path: app/Services/ChatService.php
+
+		-
+			rawMessage: 'Cannot call method whereHas() on mixed.'
+			identifier: method.nonObject
+			count: 2
+			path: app/Services/ChatService.php
+
+		-
+			rawMessage: 'Cannot call method with() on mixed.'
+			identifier: method.nonObject
+			count: 1
+			path: app/Services/ChatService.php
+
+		-
+			rawMessage: 'Cannot call method withCount() on mixed.'
+			identifier: method.nonObject
+			count: 1
+			path: app/Services/ChatService.php
+
+		-
+			rawMessage: 'Generic type Illuminate\Contracts\Pagination\CursorPaginator<App\Models\ChatMessage> in PHPDoc tag @return does not specify all template types of interface Illuminate\Contracts\Pagination\CursorPaginator: TKey, TValue'
+			identifier: generics.lessTypes
+			count: 1
+			path: app/Services/ChatService.php
+
+		-
+			rawMessage: 'Generic type Illuminate\Contracts\Pagination\CursorPaginator<App\Models\Conversation> in PHPDoc tag @return does not specify all template types of interface Illuminate\Contracts\Pagination\CursorPaginator: TKey, TValue'
+			identifier: generics.lessTypes
+			count: 1
+			path: app/Services/ChatService.php
+
+		-
+			rawMessage: 'Method App\Services\ChatService::findDirectConversation() should return App\Models\Conversation|null but returns mixed.'
+			identifier: return.type
+			count: 1
+			path: app/Services/ChatService.php
+
+		-
+			rawMessage: 'Method App\Services\ChatService::findOrCreateDirectConversation() should return App\Models\Conversation but returns mixed.'
+			identifier: return.type
+			count: 1
+			path: app/Services/ChatService.php
+
+		-
+			rawMessage: 'Method App\Services\ChatService::getConversationMessages() should return Illuminate\Contracts\Pagination\CursorPaginator<App\Models\ChatMessage> but returns mixed.'
+			identifier: return.type
+			count: 1
+			path: app/Services/ChatService.php
+
+		-
+			rawMessage: 'Method App\Services\ChatService::getTotalUnreadCount() should return int but returns mixed.'
+			identifier: return.type
+			count: 1
+			path: app/Services/ChatService.php
+
+		-
+			rawMessage: 'Method App\Services\ChatService::getUserConversations() should return Illuminate\Contracts\Pagination\CursorPaginator<App\Models\Conversation> but returns mixed.'
+			identifier: return.type
+			count: 1
+			path: app/Services/ChatService.php
+
+		-
+			rawMessage: 'Type App\Models\ChatMessage in generic type Illuminate\Contracts\Pagination\CursorPaginator<App\Models\ChatMessage> in PHPDoc tag @return is not subtype of template type TKey of (int|string) of interface Illuminate\Contracts\Pagination\CursorPaginator.'
+			identifier: generics.notSubtype
+			count: 1
+			path: app/Services/ChatService.php
+
+		-
+			rawMessage: 'Type App\Models\Conversation in generic type Illuminate\Contracts\Pagination\CursorPaginator<App\Models\Conversation> in PHPDoc tag @return is not subtype of template type TKey of (int|string) of interface Illuminate\Contracts\Pagination\CursorPaginator.'
+			identifier: generics.notSubtype
+			count: 1
+			path: app/Services/ChatService.php
