@@ -2,10 +2,12 @@
 
 declare(strict_types=1);
 
+use App\Events\ChatMessagesRead;
 use App\Models\ChatMessage;
 use App\Models\Conversation;
 use App\Models\ConversationParticipant;
 use App\Models\User;
+use Illuminate\Support\Facades\Event;
 
 beforeEach(function (): void {
     $this->user = User::factory()->create();
@@ -611,5 +613,63 @@ describe('Broadcasting Events', function (): void {
             ->postJson("/api/chat/conversations/{$conversation->id}/read");
 
         Event::assertNotDispatched(ChatMessagesRead::class);
+    });
+});
+
+describe('GET /api/chat/users', function (): void {
+    test('returns list of users excluding the authenticated user', function (): void {
+        $response = $this->actingAs($this->user, 'api')
+            ->getJson('/api/chat/users');
+
+        $response->assertOk()
+            ->assertJsonStructure([
+                'data' => [
+                    '*' => ['id', 'name', 'email'],
+                ],
+            ]);
+
+        $ids = collect($response->json('data'))->pluck('id')->all();
+        expect($ids)->not->toContain($this->user->id)
+            ->and($ids)->toContain($this->otherUser->id);
+    });
+
+    test('supports search by name', function (): void {
+        $searchable = User::factory()->create(['name' => 'Unique Search Name']);
+
+        $response = $this->actingAs($this->user, 'api')
+            ->getJson('/api/chat/users?search=Unique+Search');
+
+        $response->assertOk();
+
+        $ids = collect($response->json('data'))->pluck('id')->all();
+        expect($ids)->toContain($searchable->id);
+    });
+
+    test('supports search by email', function (): void {
+        $searchable = User::factory()->create(['email' => 'findme-unique@example.com']);
+
+        $response = $this->actingAs($this->user, 'api')
+            ->getJson('/api/chat/users?search=findme-unique');
+
+        $response->assertOk();
+
+        $ids = collect($response->json('data'))->pluck('id')->all();
+        expect($ids)->toContain($searchable->id);
+    });
+
+    test('supports per_page parameter', function (): void {
+        User::factory()->count(5)->create();
+
+        $response = $this->actingAs($this->user, 'api')
+            ->getJson('/api/chat/users?per_page=2');
+
+        $response->assertOk()
+            ->assertJsonCount(2, 'data');
+    });
+
+    test('requires authentication', function (): void {
+        $response = $this->getJson('/api/chat/users');
+
+        $response->assertUnauthorized();
     });
 });

@@ -9,10 +9,12 @@ use App\Http\Requests\Api\CreateDirectConversationRequest;
 use App\Http\Requests\Api\SendChatMessageRequest;
 use App\Http\Resources\ChatMessageResource;
 use App\Http\Resources\ConversationResource;
+use App\Http\Resources\UserResource;
 use App\Models\ChatMessage;
 use App\Models\Conversation;
 use App\Models\User;
 use App\Services\ChatService;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
@@ -21,6 +23,29 @@ final class ChatController extends Controller
     public function __construct(
         private readonly ChatService $chatService,
     ) {}
+
+    public function users(): AnonymousResourceCollection
+    {
+        /** @var User $authUser */
+        $authUser = auth('api')->user();
+
+        $query = User::query()
+            ->where('id', '!=', $authUser->id)
+            ->orderBy('name');
+
+        $search = request()->input('search');
+        if (is_string($search) && $search !== '') {
+            $query->where(function (Builder $q) use ($search): void {
+                $q->where('name', 'like', "%{$search}%")
+                    ->orWhere('email', 'like', "%{$search}%");
+            });
+        }
+
+        $perPage = (int) request()->input('per_page', 20);
+        $perPage = max(1, min($perPage, 100));
+
+        return UserResource::collection($query->paginate($perPage));
+    }
 
     public function createOrGetDirect(CreateDirectConversationRequest $request): ConversationResource
     {

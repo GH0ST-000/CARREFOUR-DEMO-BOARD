@@ -56,6 +56,7 @@ Route::middleware('auth:api')->group(function (): void {
     Route::get('action-logs/{actionLog}', [ActionLogController::class, 'show']);
 
     Route::prefix('chat')->group(function (): void {
+        Route::get('users', [ChatController::class, 'users']);
         Route::post('conversations/direct', [ChatController::class, 'createOrGetDirect']);
         Route::get('conversations', [ChatController::class, 'indexConversations']);
         Route::get('conversations/{conversation}', [ChatController::class, 'showConversation']);

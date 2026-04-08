@@ -8,7 +8,61 @@ All endpoints require JWT authentication via the `Authorization: Bearer <token>`
 
 ## Endpoints
 
-### 1. Create or Get Direct Conversation
+### 1. List Users for Chat
+
+Returns a paginated, searchable list of users available to start a conversation with. The authenticated user is excluded from the results.
+
+```
+GET /api/chat/users
+```
+
+**Query Parameters:**
+
+| Param      | Type    | Default | Description                          |
+|------------|---------|---------|--------------------------------------|
+| `search`   | string  | —       | Filter by name or email (partial)    |
+| `per_page` | integer | 20      | Items per page (1–100)               |
+| `page`     | integer | 1       | Page number                          |
+
+**Response (200 OK):**
+
+```json
+{
+  "data": [
+    {
+      "id": 25,
+      "name": "Nika",
+      "email": "nika@example.com",
+      "branch_id": null,
+      "roles": ["manager"],
+      "permissions": ["view_tickets"]
+    }
+  ],
+  "links": {
+    "first": "/api/chat/users?page=1",
+    "last": "/api/chat/users?page=3",
+    "prev": null,
+    "next": "/api/chat/users?page=2"
+  },
+  "meta": {
+    "current_page": 1,
+    "last_page": 3,
+    "per_page": 20,
+    "total": 50
+  }
+}
+```
+
+**Frontend Usage Notes:**
+
+- Use this endpoint to populate a user picker when starting a new conversation.
+- The `search` parameter filters by both name and email (case-insensitive partial match).
+- Results are ordered alphabetically by name.
+- The authenticated user is always excluded from the list.
+
+---
+
+### 2. Create or Get Direct Conversation
 
 Creates a direct conversation between the authenticated user and another user. Returns the existing conversation if one already exists.
 
@@ -58,7 +112,7 @@ Same structure as above but with status `200`.
 
 ---
 
-### 2. List My Conversations
+### 3. List My Conversations
 
 Returns paginated conversations for the authenticated user, sorted by latest message.
 
@@ -119,7 +173,7 @@ GET /api/chat/conversations
 
 ---
 
-### 3. Get Conversation Details
+### 4. Get Conversation Details
 
 Returns metadata for a single conversation.
 
@@ -156,7 +210,7 @@ GET /api/chat/conversations/{conversationId}
 
 ---
 
-### 4. Get Conversation Messages
+### 5. Get Conversation Messages
 
 Returns paginated message history for a conversation.
 
@@ -232,7 +286,7 @@ GET /api/chat/conversations/{conversationId}/messages
 
 ---
 
-### 5. Send Message
+### 6. Send Message
 
 Creates a new message in a conversation.
 
@@ -290,7 +344,7 @@ POST /api/chat/conversations/{conversationId}/messages
 
 ---
 
-### 6. Mark Messages as Read
+### 7. Mark Messages as Read
 
 Marks all unread incoming messages in a conversation as read for the authenticated user.
 
@@ -318,7 +372,7 @@ POST /api/chat/conversations/{conversationId}/read
 
 ---
 
-### 7. Get Total Unread Count
+### 8. Get Total Unread Count
 
 Returns the total number of unread incoming messages across all conversations.
 
@@ -342,7 +396,7 @@ GET /api/chat/unread-count
 
 ---
 
-### 8. Delete Message (Optional)
+### 9. Delete Message (Optional)
 
 Soft deletes a message. Only the sender can delete their own messages.
 
@@ -642,6 +696,14 @@ const headers = {
   'Authorization': `Bearer ${token}`,
 };
 
+// List users to chat with
+const getUsers = async (search?: string, page = 1) => {
+  const params = new URLSearchParams({ per_page: '20', page: String(page) });
+  if (search) params.set('search', search);
+  const res = await fetch(`${API_BASE}/chat/users?${params}`, { headers });
+  return res.json();
+};
+
 // Create or get direct conversation
 const startChat = async (userId: number) => {
   const res = await fetch(`${API_BASE}/chat/conversations/direct`, {
@@ -806,6 +868,7 @@ interface MessagesReadEvent {
 
 | Method | Endpoint                                         | Description                        |
 |--------|--------------------------------------------------|------------------------------------|
+| GET    | `/api/chat/users`                                | List users for chat (searchable)   |
 | POST   | `/api/chat/conversations/direct`                 | Create or get direct conversation  |
 | GET    | `/api/chat/conversations`                        | List my conversations              |
 | GET    | `/api/chat/conversations/{id}`                   | Get conversation details           |
