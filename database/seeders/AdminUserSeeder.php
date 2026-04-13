@@ -15,7 +15,7 @@ final class AdminUserSeeder extends Seeder
     {
         $admin = User::create([
             'name' => 'Recall Admin',
-            'email' => 'admin@nikora.ge',
+            'email' => 'admin@example.ge',
             'password' => Hash::make('password'),
             'email_verified_at' => now(),
         ]);
@@ -23,7 +23,7 @@ final class AdminUserSeeder extends Seeder
 
         $qualityManager = User::create([
             'name' => 'Quality Manager',
-            'email' => 'quality@nikora.ge',
+            'email' => 'quality@example.ge',
             'password' => Hash::make('password'),
             'email_verified_at' => now(),
         ]);
@@ -33,7 +33,7 @@ final class AdminUserSeeder extends Seeder
         if ($firstBranch) {
             $branchManager = User::create([
                 'name' => 'Branch Manager',
-                'email' => 'branch@nikora.ge',
+                'email' => 'branch@example.ge',
                 'password' => Hash::make('password'),
                 'email_verified_at' => now(),
                 'branch_id' => $firstBranch->id,
@@ -42,7 +42,7 @@ final class AdminUserSeeder extends Seeder
 
             $warehouseOperator = User::create([
                 'name' => 'Warehouse Operator',
-                'email' => 'warehouse@nikora.ge',
+                'email' => 'warehouse@example.ge',
                 'password' => Hash::make('password'),
                 'email_verified_at' => now(),
                 'branch_id' => $firstBranch->id,
@@ -52,7 +52,7 @@ final class AdminUserSeeder extends Seeder
 
         $auditor = User::create([
             'name' => 'Auditor',
-            'email' => 'auditor@nikora.ge',
+            'email' => 'auditor@example.ge',
             'password' => Hash::make('password'),
             'email_verified_at' => now(),
         ]);
