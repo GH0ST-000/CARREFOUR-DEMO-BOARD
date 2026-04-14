@@ -30,7 +30,7 @@ final class UpdateBatchRequest extends FormRequest
             'import_declaration_number' => ['sometimes', 'nullable', 'string', 'max:255'],
             'local_production_number' => ['sometimes', 'nullable', 'string', 'max:255'],
             'production_date' => ['sometimes', 'required', 'date', 'before_or_equal:today'],
-            'expiry_date' => ['sometimes', 'required', 'date', 'after:production_date'],
+            'expiry_date' => ['sometimes', 'nullable', 'date', 'after_or_equal:production_date'],
             'receiving_datetime' => ['sometimes', 'nullable', 'date'],
             'quantity' => ['sometimes', 'required', 'numeric', 'min:0.01'],
             'unit' => ['sometimes', 'required', 'string', 'max:50'],

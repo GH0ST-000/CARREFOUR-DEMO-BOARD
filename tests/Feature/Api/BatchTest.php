@@ -114,11 +114,28 @@ test('validates required fields when creating batch', function (): void {
         ->assertJsonValidationErrors([
             'batch_number',
             'production_date',
-            'expiry_date',
             'quantity',
             'unit',
             'product_id',
         ]);
+});
+
+test('calculates expiry date from product shelf life when omitted', function (): void {
+    $product = Product::factory()->create([
+        'shelf_life_days' => 30,
+    ]);
+
+    $response = $this->actingAs($this->user, 'api')
+        ->postJson('/api/batches', [
+            'batch_number' => 'BATCH-NO-EXP-001',
+            'production_date' => '2026-01-01',
+            'quantity' => 10,
+            'unit' => 'kg',
+            'product_id' => $product->id,
+        ]);
+
+    $response->assertCreated()
+        ->assertJsonPath('data.expiry_date', '2026-01-31');
 });
 
 test('validates unique batch number', function (): void {

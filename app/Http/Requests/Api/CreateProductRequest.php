@@ -31,6 +31,7 @@ final class CreateProductRequest extends FormRequest
             'country_of_origin' => ['required', 'string', 'max:255'],
             'storage_temp_min' => ['nullable', 'numeric', 'min:-50', 'max:50'],
             'storage_temp_max' => ['nullable', 'numeric', 'min:-50', 'max:50', 'gte:storage_temp_min'],
+            'production_date' => ['nullable', 'date', 'before_or_equal:today'],
             'shelf_life_days' => ['required', 'integer', 'min:1', 'max:3650'],
             'inventory_policy' => ['required', 'string', 'in:fifo,fefo'],
             'allergens' => ['nullable', 'array'],

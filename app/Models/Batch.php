@@ -7,9 +7,11 @@ namespace App\Models;
 use Database\Factories\BatchFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
 
 /**
@@ -38,6 +40,7 @@ use Illuminate\Support\Carbon;
  * @property-read Product $product
  * @property-read WarehouseLocation|null $warehouseLocation
  * @property-read User|null $receivedBy
+ * @property-read Collection<int, Document> $documents
  */
 #[Fillable([
     'batch_number',
@@ -87,6 +90,14 @@ final class Batch extends Model
     public function receivedBy(): BelongsTo
     {
         return $this->belongsTo(User::class, 'received_by_user_id');
+    }
+
+    /**
+     * @return HasMany<Document, $this>
+     */
+    public function documents(): HasMany
+    {
+        return $this->hasMany(Document::class);
     }
 
     /**
