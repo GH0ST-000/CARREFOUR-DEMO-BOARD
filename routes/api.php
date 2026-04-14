@@ -5,12 +5,15 @@ declare(strict_types=1);
 use App\Http\Controllers\Api\ActionLogController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\BatchController;
+use App\Http\Controllers\Api\BatchDocumentController;
 use App\Http\Controllers\Api\ChatController;
 use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\ManufacturerController;
 use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\PermissionController;
 use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\Api\ProductDocumentController;
+use App\Http\Controllers\Api\ProductTraceabilityController;
 use App\Http\Controllers\Api\ReceivingController;
 use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\Api\TicketController;
@@ -69,6 +72,14 @@ Route::middleware('auth:api')->group(function (): void {
     Route::apiResource('batches', BatchController::class);
     Route::apiResource('warehouse-locations', WarehouseLocationController::class);
     Route::apiResource('receivings', ReceivingController::class);
+
+    // Documents
+    Route::post('products/{product}/documents', [ProductDocumentController::class, 'store'])->name('products.documents.store');
+    Route::post('batches/{batch}/documents', [BatchDocumentController::class, 'store'])->name('batches.documents.store');
+
+    // Product traceability
+    Route::get('products/{product}/traceability', [ProductTraceabilityController::class, 'index'])->name('products.traceability.index');
+    Route::post('products/{product}/branch-assignments', [ProductTraceabilityController::class, 'store'])->name('products.branch-assignments.store');
 
     // Tickets
     Route::controller(TicketController::class)->prefix('tickets')->name('tickets.')->group(function (): void {

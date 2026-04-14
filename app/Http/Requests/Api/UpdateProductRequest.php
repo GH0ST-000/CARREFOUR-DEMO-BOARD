@@ -34,6 +34,7 @@ final class UpdateProductRequest extends FormRequest
             'country_of_origin' => ['sometimes', 'required', 'string', 'max:255'],
             'storage_temp_min' => ['sometimes', 'nullable', 'numeric', 'min:-50', 'max:50'],
             'storage_temp_max' => ['sometimes', 'nullable', 'numeric', 'min:-50', 'max:50', 'gte:storage_temp_min'],
+            'production_date' => ['sometimes', 'nullable', 'date', 'before_or_equal:today'],
             'shelf_life_days' => ['sometimes', 'required', 'integer', 'min:1', 'max:3650'],
             'inventory_policy' => ['sometimes', 'required', 'string', 'in:fifo,fefo'],
             'allergens' => ['sometimes', 'nullable', 'array'],

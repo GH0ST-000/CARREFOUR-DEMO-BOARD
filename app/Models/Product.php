@@ -7,9 +7,11 @@ namespace App\Models;
 use Database\Factories\ProductFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
 
 /**
@@ -25,7 +27,9 @@ use Illuminate\Support\Carbon;
  * @property string $country_of_origin
  * @property float|null $storage_temp_min
  * @property float|null $storage_temp_max
+ * @property Carbon|null $production_date
  * @property int $shelf_life_days
+ * @property Carbon|null $expiration_date
  * @property string $inventory_policy
  * @property array<int, string>|null $allergens
  * @property array<int, string>|null $risk_indicators
@@ -35,6 +39,8 @@ use Illuminate\Support\Carbon;
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property-read Manufacturer $manufacturer
+ * @property-read Collection<int, Batch> $batches
+ * @property-read Collection<int, Document> $documents
  */
 #[Fillable([
     'name',
@@ -48,7 +54,9 @@ use Illuminate\Support\Carbon;
     'country_of_origin',
     'storage_temp_min',
     'storage_temp_max',
+    'production_date',
     'shelf_life_days',
+    'expiration_date',
     'inventory_policy',
     'allergens',
     'risk_indicators',
@@ -67,6 +75,22 @@ final class Product extends Model
     public function manufacturer(): BelongsTo
     {
         return $this->belongsTo(Manufacturer::class);
+    }
+
+    /**
+     * @return HasMany<Batch, $this>
+     */
+    public function batches(): HasMany
+    {
+        return $this->hasMany(Batch::class);
+    }
+
+    /**
+     * @return HasMany<Document, $this>
+     */
+    public function documents(): HasMany
+    {
+        return $this->hasMany(Document::class);
     }
 
     /**
@@ -141,12 +165,27 @@ final class Product extends Model
         return true;
     }
 
+    protected static function booted(): void
+    {
+        self::saving(function (self $product): void {
+            if ($product->production_date === null || $product->shelf_life_days <= 0) {
+                $product->expiration_date = null;
+
+                return;
+            }
+
+            $product->expiration_date = $product->production_date->copy()->addDays($product->shelf_life_days);
+        });
+    }
+
     protected function casts(): array
     {
         return [
             'storage_temp_min' => 'float',
             'storage_temp_max' => 'float',
+            'production_date' => 'date',
             'shelf_life_days' => 'integer',
+            'expiration_date' => 'date',
             'allergens' => 'array',
             'risk_indicators' => 'array',
             'required_documents' => 'array',

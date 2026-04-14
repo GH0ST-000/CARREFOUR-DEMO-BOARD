@@ -24,7 +24,7 @@ final class CreateBatchRequest extends FormRequest
             'import_declaration_number' => ['nullable', 'string', 'max:255'],
             'local_production_number' => ['nullable', 'string', 'max:255'],
             'production_date' => ['required', 'date', 'before_or_equal:today'],
-            'expiry_date' => ['required', 'date', 'after:production_date'],
+            'expiry_date' => ['nullable', 'date', 'after_or_equal:production_date'],
             'receiving_datetime' => ['nullable', 'date'],
             'quantity' => ['required', 'numeric', 'min:0.01'],
             'unit' => ['required', 'string', 'max:50'],

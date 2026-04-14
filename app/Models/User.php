@@ -9,8 +9,10 @@ use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -29,6 +31,7 @@ use Spatie\Permission\Traits\HasRoles;
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property-read Branch|null $branch
+ * @property-read Collection<int, Branch> $responsibleBranches
  */
 #[Fillable(['name', 'email', 'password'])]
 #[Hidden(['password', 'remember_token'])]
@@ -51,6 +54,16 @@ final class User extends Authenticatable implements FilamentUser, JWTSubject
     public function branch(): BelongsTo
     {
         return $this->belongsTo(Branch::class);
+    }
+
+    /**
+     * @return BelongsToMany<Branch, $this>
+     */
+    public function responsibleBranches(): BelongsToMany
+    {
+        return $this->belongsToMany(Branch::class, 'branch_responsible_users')
+            ->withPivot(['assigned_at'])
+            ->withTimestamps();
     }
 
     /**
