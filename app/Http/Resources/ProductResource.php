@@ -40,6 +40,9 @@ final class ProductResource extends JsonResource
             'required_documents' => $this->required_documents,
             'manufacturer_id' => $this->manufacturer_id,
             'manufacturer' => new ManufacturerResource($this->whenLoaded('manufacturer')),
+            'documents' => DocumentResource::collection(
+                $this->relationLoaded('documents') ? $this->documents : collect(),
+            ),
             'is_active' => $this->is_active,
             'created_at' => $this->created_at?->toISOString(),
             'updated_at' => $this->updated_at?->toISOString(),

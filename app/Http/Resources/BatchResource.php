@@ -55,6 +55,9 @@ final class BatchResource extends JsonResource
                 'email' => $this->receivedBy->email,
             ] : null),
             'linked_documents' => $this->linked_documents,
+            'documents' => DocumentResource::collection(
+                $this->relationLoaded('documents') ? $this->documents : collect(),
+            ),
             'temperature_history' => $this->temperature_history,
             'movement_history' => $this->movement_history,
             'notes' => $this->notes,

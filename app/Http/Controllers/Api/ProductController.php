@@ -37,6 +37,7 @@ final class ProductController extends Controller
         $this->authorize('create', Product::class);
 
         $product = $action->execute($request->validated());
+        $product->load(['manufacturer', 'documents']);
 
         return new ProductResource($product);
     }
@@ -45,7 +46,7 @@ final class ProductController extends Controller
     {
         $this->authorize('view', $product);
 
-        $product->load('manufacturer');
+        $product->load(['manufacturer', 'documents']);
 
         return new ProductResource($product);
     }
@@ -58,7 +59,7 @@ final class ProductController extends Controller
         $this->authorize('update', $product);
 
         $product = $action->execute($product, $request->validated());
-        $product->load('manufacturer');
+        $product->load(['manufacturer', 'documents']);
 
         return new ProductResource($product);
     }

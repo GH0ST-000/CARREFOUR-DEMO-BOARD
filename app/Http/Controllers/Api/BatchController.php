@@ -40,6 +40,7 @@ final class BatchController extends Controller
         $this->authorize('create', Batch::class);
 
         $batch = $this->createAction->execute($request->validated());
+        $batch->load(['product', 'warehouseLocation', 'receivedBy', 'documents']);
 
         return new BatchResource($batch);
     }
@@ -47,6 +48,8 @@ final class BatchController extends Controller
     public function show(Batch $batch): BatchResource
     {
         $this->authorize('view', $batch);
+
+        $batch->load(['product', 'warehouseLocation', 'receivedBy', 'documents']);
 
         return new BatchResource($batch);
     }
@@ -56,6 +59,7 @@ final class BatchController extends Controller
         $this->authorize('update', $batch);
 
         $batch = $this->updateAction->execute($batch, $request->validated());
+        $batch->load(['product', 'warehouseLocation', 'receivedBy', 'documents']);
 
         return new BatchResource($batch);
     }
