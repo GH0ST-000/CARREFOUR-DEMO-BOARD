@@ -23,3 +23,7 @@ All code must meet:
 - **Laravel:** 13.x
 - **API Version:** 1.0
 - **Project Version:** 1.2.0
+
+## Documentation
+
+- `docs/FRONTEND_INTEGRATION.md` — step-by-step integration guide for product dates, documents (multi-upload + storage URLs), batches, and traceability APIs
